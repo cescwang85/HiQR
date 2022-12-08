@@ -40,13 +40,6 @@ n=200
 p=100
 Omega<-toeplitz(0.5^(1:p-1))
 X=mvrnorm(n,rep(0,p),solve(Omega))
-aa<-HiQR(X)
-bb<-HiQR(X,type=FALSE);
-
-obj1<-CVHiQR(X);
-obj2<-CVHiQR(X,type=FALSE)
-obj1$Omega[1:10,1:10]
-obj2$Omega[1:10,1:10]
 ```
-The algorithm is very efficient and it takes less than one second for the toy example with accelerated BLAS. 
+This is a test file for Sync.
 
