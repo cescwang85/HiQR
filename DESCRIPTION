@@ -1,7 +1,7 @@
 Package: HiQR
 Type: Package
 Title: An efficient algorithm for High dimensional Quadratic Regression (HiQR)
-Version: 1.0
+Version: 1.1
 Date: 2022-08-04
 Author: Cheng Wang
 Maintainer: Cheng Wang <chengwang@sjtu.edu.cn>
