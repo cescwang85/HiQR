@@ -41,5 +41,5 @@ p=100
 Omega<-toeplitz(0.5^(1:p-1))
 X=mvrnorm(n,rep(0,p),solve(Omega))
 ```
-This is a test file for Sync.
+Have A try with Github-Desktop.
 
