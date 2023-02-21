@@ -1,5 +1,5 @@
 # Introduction for R package HiQR
-We develop an Efficient admm algorithm via the QUAdratic Loss (HiQR) for precision matrix estimation. The computation complexity for each iteration of the algorithm is linear in both the sample size (n) and the number of parameters (p^2).  
+We develop an Efficient admm algorithm via the QUAdratic Loss (HiQR) for quadratic regression with penalty. The computation complexity for each iteration of the algorithm is linear in both the sample size (n) and the number of parameters (p^2).  
 
 
 This is my first R package and welcome any comments or suggestions.
