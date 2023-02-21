@@ -5,7 +5,7 @@ We develop an Efficient admm algorithm via the QUAdratic Loss (HiQR) for precisi
 This is my first R package and welcome any comments or suggestions.
 
 # References 
-Still in press
+Still in develop
 
 # Getting Started
 These instructions will give you a toy example for implementing the package.
@@ -41,5 +41,4 @@ p=100
 Omega<-toeplitz(0.5^(1:p-1))
 X=mvrnorm(n,rep(0,p),solve(Omega))
 ```
-Have A try with Github-Desktop.
 
