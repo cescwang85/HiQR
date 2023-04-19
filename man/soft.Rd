@@ -2,19 +2,21 @@
 % Please edit documentation in R/RcppExports.R
 \name{soft}
 \alias{soft}
-\title{Element-wise Soft Thresholding Function for a Matrix}
+\title{Element-wise soft-thresholding function for a matrix}
 \usage{
-soft(A, a)
+soft(X, lambda, k = 1L)
 }
 \arguments{
-\item{\code{A}}{Matrix}
+\item{\code{X}, }{a matrix.}
 
-\item{\code{a}}{scalar}
+\item{\code{lambda}, }{scalar.}
+
+\item{\code{k}, }{Not penalized the first element. Default is \code{1}(TRUE).}
 }
 \value{
-Matrix after threholding
+a matrix after threholding.
 }
 \description{
-Soft thresholding function for Matrix which is the solution of the  
-\deqn{\argmin_X ||X-A||_2^2/2+a ||X||_1.}
+Soft-thresholding function for a matrix which is the solution of
+\deqn{\argmin_Y ||Y-X||_2^2/2+\lambda ||Y||_1.}
 }

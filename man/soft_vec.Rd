@@ -2,19 +2,19 @@
 % Please edit documentation in R/RcppExports.R
 \name{soft_vec}
 \alias{soft_vec}
-\title{Element-wise Soft Thresholding Function for Vector}
+\title{Element-wise soft-thresholding function for a vector}
 \usage{
-soft_vec(y, lambda)
+soft_vec(x, lambda)
 }
 \arguments{
-\item{\code{y}}{a vector}
+\item{\code{x}, }{a vector.}
 
-\item{\code{lambda}}{a scalar}
+\item{\code{lambda}, }{a scalar.}
 }
 \value{
-Vector after threholding
+a vector after threholding.
 }
 \description{
-Soft thresholding function for a vector which is the solution of the  
-\deqn{\argmin_x ||y-x||_2^2/2+\lambda ||x||_1.}
+Soft-thresholding function for a vector which is the solution of
+\deqn{\argmin_y ||y-x||_2^2/2+\lambda ||y||_1.}
 }

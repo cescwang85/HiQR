@@ -2,24 +2,27 @@
 % Please edit documentation in R/RcppExports.R
 \name{proc}
 \alias{proc}
-\title{Proximal projection of a Matrix with different penalties.}
+\title{Proximal projection of a Matrix with penalty.}
 \usage{
 proc(X, lambda = 0, type = 1L, k = 1L)
 }
 \arguments{
-\item{\code{X}}{a Matrix}
+\item{\code{X}, }{a matrix.}
 
-\item{\code{lambda}}{a scalar}
+\item{\code{lambda}, }{a scalar.}
 
-\item{\code{type}}{The penalty to use for the columns of matrix \code{X}.
-\eqn{1} is the \eqn{\ell_\infty} penalty; \eqn{2} is the \eqn{\ell_2} penalty (Group LASSO); \eqn{3} is the hybrid \eqn{\ell_1/\ell_\infty} penalty.}
+\item{\code{type}, }{The penalty to use. \eqn{1} (Default) is the \eqn{\ell_1} penalty; 
+\eqn{2} is the \eqn{\ell_\infty} penalty; \eqn{3} is the \eqn{\ell_2} penalty;
+ \eqn{4} is the hybrid \eqn{\ell_1/\ell_\infty} penalty.}
 
-\item{\code{k}}{Not penalized the first \code{k} columns. Default is 1.}
+\item{\code{k}, }{Not penalized the first element (for \eqn{\ell_1} penalty) or the first \code{k} columns (for other penalties). Default is 1.
+Not work for the nuclear norm.}
 }
 \value{
-A Matrix.
+a matrix.
 }
 \description{
 Proximal projection solution of a Matrix where each column is the solution:
 \deqn{\argmin_y ||y-x||_2^2/2+\lambda \cdot p(y).}
+or proximal projection of nuclear norm.
 }

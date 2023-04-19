@@ -2,19 +2,19 @@
 % Please edit documentation in R/RcppExports.R
 \name{qrow}
 \alias{qrow}
-\title{Quadratic of Each Row}
+\title{Quadratic form for each sample}
 \usage{
 qrow(X, W)
 }
 \arguments{
-\item{\code{X}}{a \eqn{n*p} Matrix}
+\item{\code{X}, }{a \eqn{n \times p} matrix.}
 
-\item{\code{W}}{a \eqn{p*p} weight Matrix}
+\item{\code{W}, }{a \eqn{p \times p} weight matrix.}
 }
 \value{
-Quadratic of Each Row
+a \eqn{n} dimensional vector.
 }
 \description{
-\code{qrow} computes the quadratic of Each Row : 
-\deqn{ \diag(X W X^\top)=(X_1^\top W X_1,\cdots,X_n^\top W X_n)^\top}
+Calculate the quadratic form for each sample with a Weight matrix \code{W}: 
+\deqn{ diag(X W X^\top)=(X_1^\top W X_1,\cdots,X_n^\top W X_n)^\top.}
 }

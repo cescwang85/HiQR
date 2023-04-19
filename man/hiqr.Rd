@@ -7,13 +7,13 @@
 hiqr(
   X,
   Y,
+  type = NULL,
   lambda1 = NULL,
-  nlambda1 = 10,
+  nlambda1 = 50,
   lambda.min.ratio1 = 0.1,
   lambda2 = NULL,
-  nlambda2 = 10,
+  nlambda2 = 50,
   lambda.min.ratio2 = 0.1,
-  type = NULL,
   err_abs = 1e-04,
   err_rel = 0.001,
   maxIter = 200,
@@ -21,25 +21,46 @@ hiqr(
 )
 }
 \arguments{
-\item{Y}{response variable with length n.}
+\item{\code{X}, }{covariates data matrix of dimension \eqn{n \times p}.}
 
-\item{lambda1}{user supplied tuning parameter for the \eqn{\ell_1} penalty; Default is NULL and the program compute its own
-sequence based on \code{nlambda}.}
+\item{\code{Y}, }{response variable with length \eqn{n}.}
 
-\item{nlambda1}{the length of the tuning parameter sequence which is available when lambda is NULL. Default is 50.}
+\item{\code{type}, }{The penalty to use: 
+1(Default)--\eqn{\ell_1} penalty(LASSO);
+2--squared \eqn{\ell_2} penalty(Ridge Regression);
+5--nuclear norm penalty(Reduced Rank Regression);
+12--\eqn{\ell_1+\ell_\infty} penalties;
+13-\eqn{\ell_1+\ell_2} penalties;
+14--\eqn{\ell_1+\ell_1/\ell_\infty} penalties;
+15--\eqn{\ell_1+}nuclear norm penalties.}
 
-\item{lambda.min.ratio1}{smallest value for lambda, as a fraction of lambda.max which is available when lambda is NULL. Default is 0.1.}
+\item{\code{lambda1}, }{user supplied tuning parameter for the first penalty; Default is NULL and the program compute its own
+sequence based on \code{nlambda1}.}
 
-\item{maxIter}{Maximum number of iterations. Default is 1000.}
+\item{\code{nlambda1}, }{the length of the tuning parameter sequence which is available when \code{lambda1} is NULL. Default is 50.}
 
-\item{rho}{step parameter for the ADMM. Default is 1.}
+\item{\code{lambda.min.ratio1}, }{smallest value for lambda, as a fraction of lambda.max which is available when \code{lambda1} is NULL. Default is 0.1.}
 
-\item{\code{X}}{covariates data matrix of dimension n*p.}
+\item{\code{lambda2}, }{user supplied tuning parameter for the second penalty(if exists); Default is NULL and the program compute its own
+sequence based on \code{nlambda1}.}
 
-\item{err}{the precision used to stop the convergence. Default is 1e-4.}
+\item{\code{nlambda2}, }{the length of the tuning parameter sequence which is available when \code{lambda2} is NULL. Default is 50.}
+
+\item{\code{lambda.min.ratio2}, }{smallest value for lambda, as a fraction of lambda.max which is available when \code{lambda2} is NULL. Default is 0.1.}
+
+\item{\code{err_abs}, \code{err_rel}, }{the absolute and relative precision used to stop the convergence. Default are 1e-4 and 1e-3.}
+
+\item{\code{maxIter}, }{Maximum number of iterations. Default is 200.}
+
+\item{\code{rho}, }{step parameter for ADMM. Default is 5.}
 }
 \value{
-A sparse asymmetric p*p matrix for the interactions.
+A list with components
+\item{Omega}{a list with length \code{nlambda1}(for single penalty) or \code{nlambda1}*\code{nlambda2}(for two penalties) of sparse \eqn{(p+1) \times (p+1)} matrices. 
+For two penalties, the \eqn{(i-1)}*\code{nlambda2}\eqn{+j} element of the list is for (\code{lambda1}[i],\code{lambda2}[j]}).
+\item{lambda1}{the used lambda1 for the solution path.}
+\item{lambda2}{the used lambda2 for the solution path.}
+\item{niter}{the number of iterations for each element which is a \code{nlambda1} vector(for single penalty) or a \code{nlambda1}*\code{nlambda2} matrix (for two penalties).}
 }
 \description{
 Main function for the High dimensional Quadratic Regression (HiQR)

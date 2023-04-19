@@ -2,13 +2,17 @@ Package: HiQR
 Type: Package
 Title: An efficient algorithm for High dimensional Quadratic Regression (HiQR)
 Version: 1.1
-Date: 2022-08-04
+Date: 2023-04-30
 Author: Cheng Wang
 Maintainer: Cheng Wang <chengwang@sjtu.edu.cn>
-Description: Fit a quadratic regression liner model via minimize least squared loss plus penalty. Several penalties are consider here including, $\ell_2$ (Ridge regression), $\ell_1$ (all-pairs LASSO), $\ell_1+\ell_\infty$.
+Description: Fit a quadratic regression linear model via minimize least squared loss plus penalty. 
+             Several penalties are consider here including single penalty such as squared $\ell_2$ 
+             norm (Ridge regression), $\ell_1$ norm (all-pairs LASSO), nuclear norm (Reduced rank 
+             regression),  and also multiple penalties such as $\ell_1+\ell_\infty$, $\ell_1+\ell_2$, 
+             $\ell_1+\ell_1/\ell_\infty$, $\ell_1+\mbox{nuclear~norm}$.
 License: GPL-2
 Depends: Matrix
 Imports: Rcpp (>= 1.0.9)
 Encoding: UTF-8
 LinkingTo: Rcpp, RcppArmadillo
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3

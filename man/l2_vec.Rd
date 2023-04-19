@@ -2,17 +2,17 @@
 % Please edit documentation in R/RcppExports.R
 \name{l2_vec}
 \alias{l2_vec}
-\title{Proximal projection of a Vector with  \eqn{\ell_2} penalty (Group LASSO).}
+\title{Proximal projection of a \eqn{\ell_2} penalty (Group LASSO).}
 \usage{
 l2_vec(x, lambda = 0)
 }
 \arguments{
-\item{\code{x}}{a vector}
+\item{\code{x}, }{a vector.}
 
-\item{\code{lambda}}{a scalar}
+\item{\code{lambda}, }{a scalar.}
 }
 \value{
-A vector which is proximal projection solution.
+a vector.
 }
 \description{
 Proximal projection solution of a vector which is the solution:

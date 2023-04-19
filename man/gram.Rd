@@ -2,19 +2,18 @@
 % Please edit documentation in R/RcppExports.R
 \name{gram}
 \alias{gram}
-\title{Weighted Gram Matrix}
+\title{Weighted Gram matrix}
 \usage{
 gram(X, w)
 }
 \arguments{
-\item{\code{X}}{a \eqn{n \times p} Matrix}
+\item{\code{X}, }{a \eqn{n \times p} matrix.}
 
-\item{\code{w}}{a \eqn{n} dimensional weight vector}
+\item{\code{w}, }{a \eqn{n} dimensional weight vector.}
 }
 \value{
-Weighted Gram Matrix
+a \eqn{p \times p} matrix.
 }
 \description{
-\code{gram} computes the weighted Gram matrix: 
-\deqn{ X^\top diag(w) X.}
+Calculate the weighted Gram matrix:\eqn{X^\top diag(w)X}.
 }

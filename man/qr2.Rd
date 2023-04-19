@@ -2,42 +2,23 @@
 % Please edit documentation in R/RcppExports.R
 \name{qr2}
 \alias{qr2}
-\title{Quadratic regression with \eqn{\ell_1} penalty and an additional penalty}
+\title{Quadratic regression with squared \eqn{\ell_2} penalty (Ridge regression)}
 \usage{
-qr2(
-  X,
-  Y,
-  lambda1,
-  lambda2,
-  type = 1L,
-  err_abs = 10^(-4),
-  err_rel = 10^(-3),
-  maxIter = 200L,
-  rho = 5
-)
+qr2(X, Y, lambda)
 }
 \arguments{
-\item{\code{X}, }{a \eqn{n*p} input data matrix.}
+\item{\code{X}, }{a \eqn{n \times p} data matrix.}
 
-\item{\code{Y}, }{a \eqn{n} response vector.}
+\item{\code{Y}, }{a \eqn{n} dimensional response vector.}
 
 \item{\code{lambda}, }{user supplied tuning parameter;}
-
-\item{\code{type}}{The additional penalty to use for the quadratic regression.
-\eqn{1} is the \eqn{\ell_\infty} penalty; \eqn{2} is the \eqn{\ell_2} penalty (Group LASSO); \eqn{3} is the hybrid \eqn{\ell_1/\ell_\infty} penalty.}
-
-\item{\code{err_abs}, }{\code{err_rel}   the precision used to stop the convergence of ADMM.}
-
-\item{\code{maxIter}, }{maximum number of iterations. Default is 200.}
-
-\item{\code{rho}, }{initial step parameter for ADMM.}
 }
 \value{
 A list with components
-\item{Omega}{a list of sparse p*p matrices corresponding to lambda.}
-\item{lambda}{the used lambda for the solution path.}
-\item{niter}{the number of iterations for each element of lambda.}
+\item{Omega}{a list of sparse \eqn{p \times p} matrices corresponding to lambda.}
+\item{lambda}{the used lambda.}
 }
 \description{
-ADMM algorithm for high dimensional Quadratic regression with \eqn{\ell_1} and other penalties.
+Algorithm for High dimensional Quadratic Regression(HiQR) with squared \eqn{\ell_2} penalty:
+\deqn{\argmin_Y \frac{1}{2n}\sum_{i=1}^n (Y_i-X_i^\top \Omega X_i)^2+\lambda \|\Omega\|_2^2.}
 }

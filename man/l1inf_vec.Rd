@@ -2,17 +2,17 @@
 % Please edit documentation in R/RcppExports.R
 \name{l1inf_vec}
 \alias{l1inf_vec}
-\title{Proximal projection of a Vector with a hybrid \eqn{\ell_1/\ell_\infty} penalty.}
+\title{Proximal projection of a hybrid \eqn{\ell_1/\ell_\infty} penalty for a vector}
 \usage{
 l1inf_vec(x, lambda = 0)
 }
 \arguments{
-\item{\code{x}}{a vector}
+\item{\code{x}, }{a vector.}
 
-\item{\code{lambda}}{a scalar}
+\item{\code{lambda}, }{a scalar.}
 }
 \value{
-A vector which is proximal projection solution.
+a vector.
 }
 \description{
 Proximal projection solution of a vector which is the solution:

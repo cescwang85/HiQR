@@ -2,17 +2,17 @@
 % Please edit documentation in R/RcppExports.R
 \name{inf_vec}
 \alias{inf_vec}
-\title{Proximal projection of a Vector with  \eqn{\ell_\infty} penalty.}
+\title{Proximal projection of a \eqn{\ell_\infty} penalty.}
 \usage{
 inf_vec(x, lambda = 0)
 }
 \arguments{
-\item{\code{x}}{a vector}
+\item{\code{x}, }{a vector.}
 
-\item{\code{lambda}}{a scalar}
+\item{\code{lambda}, }{a scalar.}
 }
 \value{
-A vector which is proximal projection solution.
+a vector after proximal projection.
 }
 \description{
 Proximal projection solution of a vector which is the solution:

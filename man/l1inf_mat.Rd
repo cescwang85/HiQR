@@ -2,19 +2,19 @@
 % Please edit documentation in R/RcppExports.R
 \name{l1inf_mat}
 \alias{l1inf_mat}
-\title{Proximal projection of a Matrix with a hybrid \eqn{\ell_1/\ell_\infty} penalty.}
+\title{Proximal projection of a hybrid \eqn{\ell_1/\ell_\infty} penalty for a matrix}
 \usage{
 l1inf_mat(X, lambda = 0, k = 1L)
 }
 \arguments{
-\item{\code{X}}{a Matrix}
+\item{\code{X}, }{a matrix.}
 
-\item{\code{lambda}}{a scalar}
+\item{\code{lambda}, }{a scalar.}
 
-\item{\code{k}}{Not penalized the first \code{k} columns. Default is 1.}
+\item{\code{k}, }{Not penalized the first \code{k} columns. Default is 1.}
 }
 \value{
-A Matrix.
+a matrix.
 }
 \description{
 Proximal projection solution of a Matrix where each column is the solution:
