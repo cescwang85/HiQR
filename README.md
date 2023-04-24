@@ -14,7 +14,6 @@ These instructions will give you a toy example for implementing the package.
 What things you need to install the software and how to install them.  The key functions of the package is writing in C++ supported by the great Rcpp package. So, make sure your OS can complies C++ code. For example,  you should install Rtools under Windows and Xcode under MacOS.  After that, the following R packages are also necessary.
 
 ```
-install.packages("MASS")
 install.packages("Rcpp")
 install.packages("RcppArmadillo")
 install.packages("Matrix")

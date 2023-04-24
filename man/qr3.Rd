@@ -36,10 +36,10 @@ qr3(
 }
 \value{
 A list with components
-\item{Omega}{a list of sparse \eqn{p \times p} matrices corresponding to lambda.}
+\item{Omega}{a list of sparse \eqn{p \times p} matrices corresponding to \code{lambda1}[k] and \code{lambda2}[k].}
 \item{lambda1}{the used lambda1 for the solution path.}
 \item{lambda2}{the used lambda2 for the solution path.}
-\item{niter}{the number of iterations for each element of (lambda1,lambda2).}
+\item{niter}{the number of iterations.}
 }
 \description{
 ADMM algorithm for high dimensional Quadratic regression with \eqn{\ell_1} and another penalty:

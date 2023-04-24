@@ -215,10 +215,10 @@ qr1 <- function(X, Y, lambda, err_abs = 10^(-4), err_rel = 10^(-3), maxIter = 20
 #' @param \code{rho}, initial step parameter for ADMM.
 #' 
 #' @return A list with components
-#' \item{Omega}{a list of sparse \eqn{p \times p} matrices corresponding to lambda.}
+#' \item{Omega}{a list of sparse \eqn{p \times p} matrices corresponding to \code{lambda1}[k] and \code{lambda2}[k].}
 #' \item{lambda1}{the used lambda1 for the solution path.}
 #' \item{lambda2}{the used lambda2 for the solution path.}
-#' \item{niter}{the number of iterations for each element of (lambda1,lambda2).}
+#' \item{niter}{the number of iterations.}
 #' @export
 #' 
 qr3 <- function(X, Y, lambda1, lambda2, type = 2L, err_abs = 10^(-4), err_rel = 10^(-3), maxIter = 200L, rho = 5) {

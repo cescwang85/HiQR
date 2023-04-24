@@ -356,20 +356,17 @@ rholist(k)=rho;
 //' @param \code{rho}, initial step parameter for ADMM.
 //' 
 //' @return A list with components
-//' \item{Omega}{a list of sparse \eqn{p \times p} matrices corresponding to lambda.}
+//' \item{Omega}{a list of sparse \eqn{p \times p} matrices corresponding to \code{lambda1}[k] and \code{lambda2}[k].}
 //' \item{lambda1}{the used lambda1 for the solution path.}
 //' \item{lambda2}{the used lambda2 for the solution path.}
-//' \item{niter}{the number of iterations for each element of (lambda1,lambda2).}
+//' \item{niter}{the number of iterations.}
 //' @export
 //' 
 // [[Rcpp::export]]
 Rcpp::List qr3(arma::mat X,arma::vec Y,arma::vec lambda1,arma::vec lambda2,int type=2,double err_abs=10^(-4),double err_rel=10^(-3),int maxIter=200,double rho=5){
   int n=X.n_rows;
   int p=X.n_cols;
-  lambda1=arma::sort(lambda1,"descend");
-  lambda2=arma::sort(lambda2,"descend");
-  int nlambda1=lambda1.size();
-  int nlambda2=lambda2.size();
+  int nlambda=lambda1.size();
   /*Preparing*/
   arma::mat D0=gram(X,Y/n);
   arma::mat Dk=D0;
@@ -377,9 +374,9 @@ Rcpp::List qr3(arma::mat X,arma::vec Y,arma::vec lambda1,arma::vec lambda2,int t
   arma::mat H2=H0%H0/n;
   arma::mat H=inv_sympd(H2+rho*arma::eye(n,n));
   
-  Rcpp::List Omega_all(nlambda1*nlambda2);
-  arma::mat niter=arma::zeros(nlambda1,nlambda2);
-  arma::mat rholist=arma::zeros(nlambda1,nlambda2);
+  Rcpp::List Omega_all(nlambda);
+  arma::vec niter=arma::zeros(nlambda);
+  arma::vec rholist=arma::zeros(nlambda);
 
   arma::vec w=Y;
   double lam1;
@@ -390,22 +387,17 @@ Rcpp::List qr3(arma::mat X,arma::vec Y,arma::vec lambda1,arma::vec lambda2,int t
   arma::mat B3;
   arma::mat B4;
   arma::mat old_B;
-
-
-  Rcpp::List Omega_part(nlambda2);
-  Omega_part(0)=arma::zeros(p,p);
-  for (int k1=0;k1<nlambda1;++k1) {
-    lam1=lambda1(k1);
-    arma::mat B=Omega_part(0);
-    arma::mat U1=arma::zeros(p,p);
-    arma::mat U2=U1;
-    arma::mat U3=U1;
-    arma::mat U4=U1;
-    
+  arma::mat B=arma::zeros(p,p);
+  arma::mat U1=arma::zeros(p,p);
+  arma::mat U2=arma::zeros(p,p);
+  arma::mat U3=arma::zeros(p,p);
+  arma::mat U4=arma::zeros(p,p);
+  
+  for (int k=0;k<nlambda;++k) {
+    lam1=lambda1(k);
+    lam2=lambda2(k);
     double ee_pri=1;
     double ee_dual=1;
-    for (int k2=0;k2<nlambda2;++k2) {
-      lam2=lambda2(k2);
     int i=0;
     while ((i<maxIter)||(i==0))
     {
@@ -436,11 +428,9 @@ Rcpp::List qr3(arma::mat X,arma::vec Y,arma::vec lambda1,arma::vec lambda2,int t
       /* if (ee_pri>10*ee_dual) {rho=2*rho;H=inv_sympd(H2+rho*arma::eye(n,n));}*/
        /*if (ee_dual>10*ee_pri) {rho=rho/2;H=inv_sympd(H2+rho*arma::eye(n,n));}*/
     }
-    Omega_part[k2]=B2;
-    niter(k1,k2)=i;
-    rholist(k1,k2)=rho;
-    Omega_all[k1*nlambda2+k2]=arma::sp_mat(B2);
-  }
+    niter(k)=i;
+    rholist(k)=rho;
+    Omega_all[k]=arma::sp_mat(B2);
   }
   return Rcpp::List::create(Rcpp::Named("Omega") =Omega_all,
                             Rcpp::Named("lambda1") =lambda1,
@@ -548,73 +538,64 @@ Rcpp::List qr1_rank(arma::mat X,arma::vec Y,arma::vec lambda,double err_abs=10^(
 Rcpp::List qr3_rank(arma::mat X,arma::vec Y,arma::vec lambda1,arma::vec lambda2,double err_abs=10^(-4),double err_rel=10^(-3),int maxIter=200,double rho=5){
   int n=X.n_rows;
   int p=X.n_cols;
-  lambda1=arma::sort(lambda1,"descend");
-  lambda2=arma::sort(lambda2,"descend");
-  int nlambda1=lambda1.size();
-  int nlambda2=lambda2.size();
+  int nlambda=lambda1.size();
     /*Preparing*/
   arma::mat D0=gram(X,Y/n);
   arma::mat Dk=D0;
   arma::mat H0=X*X.t();
   arma::mat H2=H0%H0/n;
   arma::mat H=inv_sympd(H2+rho*arma::eye(n,n));
-  Rcpp::List Omega_all(nlambda1*nlambda2);
-  arma::mat niter=arma::zeros(nlambda1,nlambda2);
-  arma::mat rholist=arma::zeros(nlambda1,nlambda2);
+  Rcpp::List Omega_all(nlambda);
+  arma::vec niter=arma::zeros(nlambda);
+  arma::vec rholist=arma::zeros(nlambda);
   arma::vec w=Y;
   double lam1;
   double lam2;
-    /*Intialization*/
+  /*Intialization*/
   arma::mat B1;
   arma::mat B2;
   arma::mat B3;
   arma::mat old_B;
-  Rcpp::List Omega_part(nlambda2);
-  Omega_part(0)=arma::zeros(p,p);
-  for (int k1=0;k1<nlambda1;++k1) {
-            lam1=lambda1(k1);
-            arma::mat B=Omega_part(0);
-            arma::mat U1=arma::zeros(p,p);
-            arma::mat U2=U1;
-            arma::mat U3=U1;
-                  
-            double ee_pri=1;
-            double ee_dual=1;
-            for (int k2=0;k2<nlambda2;++k2) {
-                 lam2=lambda2(k2);
-                 int i=0;
-                 while ((i<maxIter)||(i==0))
-                  {
-                   /* Dual-update*/
-                      Dk=D0+rho*(B-U1);
-                      w=H*qrow(X,Dk/n);
-                      B1=Dk/rho-gram(X,w/rho);
-                      B2=soft(B-U2,lam1/rho);
-                      B3=nuclear_mat(B-U3,lam2/rho);
-                      /*Prime-update*/
-                      old_B=B;
-                      B=(B1+B2+B3)/3;
-                      /*U-update*/
-                      U1=U1+B1-B;
-                      U2=U2+B2-B;
-                      U3=U3+B3-B;
-                      i=i+1;
-                      
-                      /*Stop Rule*/
-                      ee_dual=rho*norm(B-old_B,"fro"); /*dual residual*/
-                      ee_pri=norm(B1-B,"fro")+norm(B2-B,"fro")+norm(B3-B,"fro"); /*primal residual*/
-                      double err_pri_new=p*err_abs+err_rel*norm(B,"fro");
-                      double err_dual_new=p*err_abs+err_rel*norm(U1,"fro");
-                      if ((ee_dual<err_dual_new)&&(ee_pri<err_pri_new)) break;
-                      /*Varying Penalty Parameter*/
-                      /* if (ee_pri>10*ee_dual) {rho=2*rho;H=inv_sympd(H2+rho*arma::eye(n,n));}*/
-                       /* if (ee_dual>10*ee_pri) {rho=rho/2;H=inv_sympd(H2+rho*arma::eye(n,n));}*/
-                    }
-                    Omega_part[k2]=B2;
-                    niter(k1,k2)=i;
-                    rholist(k1,k2)=rho;
-                    Omega_all[k1*nlambda2+k2]=arma::sp_mat(B2);
-                  }
+  arma::mat B=arma::zeros(p,p);
+  arma::mat U1=arma::zeros(p,p);
+  arma::mat U2=arma::zeros(p,p);
+  arma::mat U3=arma::zeros(p,p);
+  
+  for (int k=0;k<nlambda;++k) {
+    lam1=lambda1(k);
+    lam2=lambda2(k);
+    double ee_pri=1;
+    double ee_dual=1;
+    int i=0;
+  while ((i<maxIter)||(i==0))
+{
+ /* Dual-update*/
+    Dk=D0+rho*(B-U1);
+    w=H*qrow(X,Dk/n);
+    B1=Dk/rho-gram(X,w/rho);
+    B2=soft(B-U2,lam1/rho);
+    B3=nuclear_mat(B-U3,lam2/rho);
+/*Prime-update*/
+    old_B=B;
+    B=(B1+B2+B3)/3;
+/*U-update*/
+    U1=U1+B1-B;
+    U2=U2+B2-B;
+    U3=U3+B3-B;
+    i=i+1;
+/*Stop Rule*/
+    ee_dual=rho*norm(B-old_B,"fro"); /*dual residual*/
+    ee_pri=norm(B1-B,"fro")+norm(B2-B,"fro")+norm(B3-B,"fro"); /*primal residual*/
+    double err_pri_new=p*err_abs+err_rel*norm(B,"fro");
+    double err_dual_new=p*err_abs+err_rel*norm(U1,"fro");
+    if ((ee_dual<err_dual_new)&&(ee_pri<err_pri_new)) break;
+/*Varying Penalty Parameter*/
+/* if (ee_pri>10*ee_dual) {rho=2*rho;H=inv_sympd(H2+rho*arma::eye(n,n));}*/
+/* if (ee_dual>10*ee_pri) {rho=rho/2;H=inv_sympd(H2+rho*arma::eye(n,n));}*/
+  }
+                    niter(k)=i;
+                    rholist(k)=rho;
+                    Omega_all[k]=arma::sp_mat(B2);
                 }
                 return Rcpp::List::create(Rcpp::Named("Omega") =Omega_all,
                                           Rcpp::Named("lambda1") =lambda1,

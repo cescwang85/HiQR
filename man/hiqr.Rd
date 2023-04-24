@@ -7,13 +7,13 @@
 hiqr(
   X,
   Y,
-  type = NULL,
-  lambda1 = NULL,
-  nlambda1 = 50,
-  lambda.min.ratio1 = 0.1,
+  type = 1,
+  lambda = NULL,
   lambda2 = NULL,
-  nlambda2 = 50,
-  lambda.min.ratio2 = 0.1,
+  nlambda = 50,
+  lambda.min.ratio = 0.25,
+  nalpha = 5,
+  alpha.min.ratio = 0.1,
   err_abs = 1e-04,
   err_rel = 0.001,
   maxIter = 200,
@@ -34,19 +34,20 @@ hiqr(
 14--\eqn{\ell_1+\ell_1/\ell_\infty} penalties;
 15--\eqn{\ell_1+}nuclear norm penalties.}
 
-\item{\code{lambda1}, }{user supplied tuning parameter for the first penalty; Default is NULL and the program compute its own
-sequence based on \code{nlambda1}.}
+\item{\code{lambda}, }{user supplied tuning parameter for the first penalty; Default is NULL and the program compute its own
+sequence based on \code{nlambda} and \code{lambda.min.ratio}.}
 
-\item{\code{nlambda1}, }{the length of the tuning parameter sequence which is available when \code{lambda1} is NULL. Default is 50.}
+\item{\code{lambda2}, }{user supplied tuning parameter for the second penalty(if exists) which has the same length as \code{lambda};
+Default is NULL and the program compute its own sequence based on \code{nlambda}, \code{lambda.min.ratio}, \code{nalpha} and \code{alpha.min.ratio}.}
 
-\item{\code{lambda.min.ratio1}, }{smallest value for lambda, as a fraction of lambda.max which is available when \code{lambda1} is NULL. Default is 0.1.}
+\item{\code{nlambda}, }{the length of the tuning parameter sequence which is available when \code{lambda} is NULL. Default is 50.}
 
-\item{\code{lambda2}, }{user supplied tuning parameter for the second penalty(if exists); Default is NULL and the program compute its own
-sequence based on \code{nlambda1}.}
+\item{\code{lambda.min.ratio}, }{smallest value for lambda, as a fraction of lambda.max which is available when \code{lambda} is NULL. Default is 0.1.}
 
-\item{\code{nlambda2}, }{the length of the tuning parameter sequence which is available when \code{lambda2} is NULL. Default is 50.}
+\item{\code{nalpha}, }{the length of the second parameter to control the magnitude of penalties on individual covariaate versus interaction terms.
+which is available when \code{lambda} is NULL. Default is 5.}
 
-\item{\code{lambda.min.ratio2}, }{smallest value for lambda, as a fraction of lambda.max which is available when \code{lambda2} is NULL. Default is 0.1.}
+\item{\code{alpha.min.ratio}, }{smallest value for \code{alpha}. Default is 0.1.}
 
 \item{\code{err_abs}, \code{err_rel}, }{the absolute and relative precision used to stop the convergence. Default are 1e-4 and 1e-3.}
 
@@ -56,11 +57,11 @@ sequence based on \code{nlambda1}.}
 }
 \value{
 A list with components
-\item{Omega}{a list with length \code{nlambda1}(for single penalty) or \code{nlambda1}*\code{nlambda2}(for two penalties) of sparse \eqn{(p+1) \times (p+1)} matrices. 
-For two penalties, the \eqn{(i-1)}*\code{nlambda2}\eqn{+j} element of the list is for (\code{lambda1}[i],\code{lambda2}[j]}).
-\item{lambda1}{the used lambda1 for the solution path.}
-\item{lambda2}{the used lambda2 for the solution path.}
-\item{niter}{the number of iterations for each element which is a \code{nlambda1} vector(for single penalty) or a \code{nlambda1}*\code{nlambda2} matrix (for two penalties).}
+\item{Omega}{a list with length \code{nlambda}(for single penalty) or \code{nlambda}*\code{nalpha}(for two penalties) of sparse \eqn{(p+1) \times (p+1)} matrices. 
+For two penalties, the element of the list is corresponding to (\code{lambda1}[k],\code{lambda2}[k]}).
+\item{lambda1}{the used \code{lambda1} for the solution path.}
+\item{lambda2}{the used \code{lambda2} for the solution path.}
+\item{niter}{the number of iterations for each element which is a \code{nlambda1} vector(for single penalty) or a \code{nlambda1}*\code{nlambda2} vector (for two penalties).}
 }
 \description{
 Main function for the High dimensional Quadratic Regression (HiQR)
