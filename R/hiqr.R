@@ -20,7 +20,7 @@
 #' @param  \code{alpha.min.ratio}, smallest value for \code{alpha}. Default is 0.1.
 #' @param \code{err_abs},\code{err_rel}, the absolute and relative precision used to stop the convergence. Default are 1e-4 and 1e-3.
 #' @param \code{maxIter}, Maximum number of iterations. Default is 200.
-#' @param \code{rho}, step parameter for ADMM. Default is 5.
+#' @param \code{rho}, step parameter for ADMM. Default is 5 for p<1000 and 10 for p>=1000.
 #' @return A list with components
 #' \item{Omega}{a list with length \code{nlambda}(for single penalty) or \code{nlambda}*\code{nalpha}(for two penalties) of sparse \eqn{(p+1) \times (p+1)} matrices. 
 #'For two penalties, the element of the list is corresponding to (\code{lambda1}[k],\code{lambda2}[k]}).

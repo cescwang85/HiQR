@@ -171,14 +171,21 @@ arma::mat l1inf_mat(arma::mat X,double lambda=0,int k=1){
 // [[Rcpp::export]]
 arma::mat nuclear_mat(arma::mat X,double lambda){
   lambda=std::abs(lambda);
+  int n=X.n_rows;
+  int p=X.n_cols;
+  int m=(p>n)*n+(p<=n)*p;
   arma::vec d;
   arma::mat u;
   arma::mat v;
   svd(u,d,v,X);
-  arma::mat D=X.zeros();
-  D.diag()=soft_vec(d,lambda);
-  arma::mat Y=u*D*v.t(); 
+  u=u.cols(0,m-1);
+  v=v.cols(0,m-1);
+  d=(d-lambda)%(d>lambda);
+  arma::mat Y=u*diagmat(d)*v.t();
   return Y;}
+
+  
+
 
 //' @title Proximal projection of a Matrix with penalty. 
 //' @description Proximal projection solution of a Matrix where each column is the solution:
