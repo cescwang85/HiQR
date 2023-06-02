@@ -8,11 +8,11 @@ $$\arg\min \frac{1}{2n} \sum_{i=1}^n (y_i-x_i^{T} B x_i)^2+f(B).$$
 3. (type=5) Reduced rank regression (nuclear norm): $f(B)=\|B\|_*$;
 4. (type=12) $\ell_1+\ell_2$ norm: 
 $f(B)=\lambda_1 \|B\|_1+\lambda_2 \sum_{k=2}^p \|B_{\cdot,k}\|_2+\lambda_2 \sum_{k=2}^p \|B_{k,\cdot}\|_2$;
-5. (type=13) $\ell_1+\ell_\infty$ norm:
-$f(B)=\lambda_1 \|B\|_1+\lambda_2 \sum_{k=2}^p \|B_{\cdot,k}\|_\infty+\lambda_2 \sum_{k=2}^p \|B_{k,\cdot}\|_\infty$;
-6. (type=14) $\ell_1+\ell_1/\ell_\infty$ norm: 
+5. (type=13) $\ell_1+\ell_{\infty}$ norm:
+$f(B)=\lambda_1 \|B\|_1+\lambda_2 \sum_{k=2}^p \|B_{\cdot,k}\|_{\infty}+\lambda_2 \sum_{k=2}^p \|B_{k,\cdot}\|_{\infty}$;
+6. (type=14) $\ell_1+\ell_1/\ell_{\infty}$ norm: 
 $f(B)=\lambda_1 \|B\|_1+\lambda_2 \sum_{k=2}^p \max\{|B_{1,k}|, \|B_{-1,k}\|_1\}+\lambda_2 \sum_{k=2}^p \max\{|B_{k,1}|, \|B_{k,-1}\|_1\}$;
-7. (type=15) $\ell_1+\ell_*$ norm: 
+7. (type=15) $\ell_1+\ell_{*}$ norm: 
 $f(B)=\lambda_1 \|B\|_1+\lambda_2 \|B\|_*$.
 
 
