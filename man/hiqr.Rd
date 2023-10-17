@@ -82,11 +82,11 @@ Omega[1,6]=2;Omega[6,10]=2;Omega=(Omega+t(Omega))/2;
 beta<-rep(0,p);beta[c(1,6,10)]=1;
 X=matrix(rnorm(n*p),nrow =n);
 Y=as.vector(diag(X\%*\%Omega\%*\%t(X))+X\%*\%beta+rnorm(n));
-obj2<-hiqr(X,Y,type=1) ##LASSO
+obj1<-hiqr(X,Y,type=1) ##LASSO
 obj2<-hiqr(X,Y,type=2) ## Ridge Regression 
 obj5<-hiqr(X,Y,type=5)## Reduced Rank Regression
 obj12<-hiqr(X,Y,type=12) ## $\ell_1+\ell_2$ norm
 obj13<-hiqr(X,Y,type=13) ## $\ell_1+\ell_\infty$ norm
 obj14<-hiqr(X,Y,type=14) ## $\ell_1+\ell_1/\ell_\infty$ norm
-obj15<-hiqr(X,Y,type=15) ## $\ell_1+\ell_*$ norm: 
+obj15<-hiqr(X,Y,type=15) ## $\ell_1+\ell_*$ norm
 }
