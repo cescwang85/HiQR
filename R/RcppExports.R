@@ -6,11 +6,9 @@
 #' \deqn{\argmin_y ||y-x||_2^2/2+\lambda ||y||_1.}
 #' @param \code{x}, a vector.
 #' @param \code{lambda}, a scalar.
-#' @return a vector after threholding.
-#' 
+#' @return a vector after thresholding.
 #' @export
-#'
-soft_vec <- function(x, lambda) {
+soft_vec <- function(x, lambda = 0) {
     .Call(`_HiQR_soft_vec`, x, lambda)
 }
 
@@ -18,14 +16,11 @@ soft_vec <- function(x, lambda) {
 #' @description Soft-thresholding function for a matrix which is the solution of
 #' \deqn{\argmin_Y ||Y-X||_2^2/2+\lambda ||Y||_1.}
 #' @param \code{X}, a matrix.
-#' @param \code{lambda}, scalar.
-#' @param  \code{k}, Not penalized the first element. Default is \code{1}(TRUE).
-#' 
-#' @return a matrix after threholding.
-#' 
+#' @param \code{lambda}, a scalar.
+#' @param  \code{k}, not penalized the first element. Default is \code{1}(TRUE).
+#' @return a matrix after thresholding.
 #' @export
-#'
-soft <- function(X, lambda, k = 1L) {
+soft <- function(X, lambda = 0, k = 1L) {
     .Call(`_HiQR_soft`, X, lambda, k)
 }
 
@@ -35,9 +30,7 @@ soft <- function(X, lambda, k = 1L) {
 #' @param \code{x}, a vector.
 #' @param \code{lambda}, a scalar.
 #' @return a vector after proximal projection.
-#' 
 #' @export
-#'
 inf_vec <- function(x, lambda = 0) {
     .Call(`_HiQR_inf_vec`, x, lambda)
 }
@@ -45,13 +38,11 @@ inf_vec <- function(x, lambda = 0) {
 #' @title Proximal projection of a \eqn{\ell_\infty} penalty for a matrix 
 #' @description Proximal projection solution of a Matrix where each column is the solution:
 #' \deqn{\argmin_y ||y-x||_2^2/2+\lambda ||y||_\infty.}
-#' @param \code{X}, a Matrix.
+#' @param \code{X}, a matrix.
 #' @param \code{lambda}, a scalar.
-#' @param \code{k}, Not penalized the first \code{k} columns. Default is 1.
+#' @param \code{k}, not penalized the first \code{k} columns. Default is 1.
 #' @return a matrix.
-#' 
 #' @export
-#'
 inf_mat <- function(X, lambda = 0, k = 1L) {
     .Call(`_HiQR_inf_mat`, X, lambda, k)
 }
@@ -62,23 +53,19 @@ inf_mat <- function(X, lambda = 0, k = 1L) {
 #' @param \code{x}, a vector.
 #' @param \code{lambda}, a scalar.
 #' @return a vector.
-#' 
 #' @export
-#'
 l2_vec <- function(x, lambda = 0) {
     .Call(`_HiQR_l2_vec`, x, lambda)
 }
 
-#' @title Proximal projection of a \eqn{\ell_2} penalty for a matrix 
+#' @title Proximal projection of a \eqn{\ell_2} penalty for a Matrix 
 #' @description Proximal projection solution of a Matrix where each column is the solution:
 #' \deqn{\argmin_y ||y-x||_2^2/2+\lambda ||y||_2.}
-#' @param \code{X}, a Matrix.
+#' @param \code{X}, a matrix.
 #' @param \code{lambda}, a scalar.
-#' @param \code{k}, Not penalized the first \code{k} columns. Default is 1.
+#' @param \code{k}, not penalized the first \code{k} columns. Default is 1.
 #' @return A Matrix.
-#' 
 #' @export
-#'
 l2_mat <- function(X, lambda = 0, k = 1L) {
     .Call(`_HiQR_l2_mat`, X, lambda, k)
 }
@@ -89,23 +76,19 @@ l2_mat <- function(X, lambda = 0, k = 1L) {
 #' @param \code{x}, a vector.
 #' @param \code{lambda}, a scalar.
 #' @return a vector.
-#' 
 #' @export
-#'
 l1inf_vec <- function(x, lambda = 0) {
     .Call(`_HiQR_l1inf_vec`, x, lambda)
 }
 
-#' @title Proximal projection of a hybrid \eqn{\ell_1/\ell_\infty} penalty for a matrix 
+#' @title Proximal projection of a hybrid \eqn{\ell_1/\ell_\infty} penalty for a Matrix 
 #' @description Proximal projection solution of a Matrix where each column is the solution:
 #' \deqn{\argmin_y ||y-x||_2^2/2+\lambda  \max\{|y_1|, \sum_{i=2}^p |y_i|\}.}
 #' @param \code{X}, a matrix.
 #' @param \code{lambda}, a scalar.
-#' @param \code{k}, Not penalized the first \code{k} columns. Default is 1.
+#' @param \code{k}, not penalized the first \code{k} columns. Default is 1.
 #' @return a matrix.
-#' 
 #' @export
-#'
 l1inf_mat <- function(X, lambda = 0, k = 1L) {
     .Call(`_HiQR_l1inf_mat`, X, lambda, k)
 }
@@ -116,28 +99,22 @@ l1inf_mat <- function(X, lambda = 0, k = 1L) {
 #' @param \code{X}, a matrix.
 #' @param \code{lambda}, a scalar.
 #' @return a matrix.
-#' 
 #' @export
-#'
-nuclear_mat <- function(X, lambda) {
+nuclear_mat <- function(X, lambda = 0) {
     .Call(`_HiQR_nuclear_mat`, X, lambda)
 }
 
 #' @title Proximal projection of a Matrix with penalty. 
 #' @description Proximal projection solution of a Matrix where each column is the solution:
 #' \deqn{\argmin_y ||y-x||_2^2/2+\lambda \cdot p(y).}
-#' or proximal projection of nuclear norm.
 #' @param \code{X}, a matrix.
 #' @param \code{lambda}, a scalar.
 #' @param \code{type}, The penalty to use. \eqn{1} (Default) is the \eqn{\ell_1} penalty; 
 #' \eqn{2} is the \eqn{\ell_\infty} penalty; \eqn{3} is the \eqn{\ell_2} penalty;
 #'  \eqn{4} is the hybrid \eqn{\ell_1/\ell_\infty} penalty.
-#' @param \code{k}, Not penalized the first element (for \eqn{\ell_1} penalty) or the first \code{k} columns (for other penalties). Default is 1.
-#' Not work for the nuclear norm. 
+#' @param \code{k}, not penalized the first element (for \eqn{\ell_1} penalty) or the first \code{k} columns (for other penalties). Default is 1.
 #' @return a matrix.
-#' 
 #' @export
-#'
 proc <- function(X, lambda = 0, type = 1L, k = 1L) {
     .Call(`_HiQR_proc`, X, lambda, type, k)
 }
@@ -147,7 +124,6 @@ proc <- function(X, lambda = 0, type = 1L, k = 1L) {
 #' @param \code{X},  a \eqn{n \times p} matrix.
 #' @param \code{w}, a \eqn{n} dimensional weight vector.
 #' @return a \eqn{p \times p} matrix.
-#' 
 #' @export
 gram <- function(X, w) {
     .Call(`_HiQR_gram`, X, w)
@@ -159,7 +135,6 @@ gram <- function(X, w) {
 #' @param \code{X},  a \eqn{n \times p} matrix.
 #' @param \code{W}, a \eqn{p \times p} weight matrix.
 #' @return a \eqn{n} dimensional vector.
-#' 
 #' @export
 qrow <- function(X, W) {
     .Call(`_HiQR_qrow`, X, W)
@@ -170,13 +145,11 @@ qrow <- function(X, W) {
 #' \deqn{\argmin_Y \frac{1}{2n}\sum_{i=1}^n (Y_i-X_i^\top \Omega X_i)^2+\lambda \|\Omega\|_2^2.}
 #' @param \code{X}, a \eqn{n \times p} data matrix.
 #' @param \code{Y}, a \eqn{n} dimensional response vector.  
-#' @param \code{lambda}, user supplied tuning parameter; 
-#' @return A list with components
+#' @param \code{lambda}, user supplied tuning parameters; 
+#' @return A list with components:
 #' \item{Omega}{a list of sparse \eqn{p \times p} matrices corresponding to lambda.}
 #' \item{lambda}{the used lambda.}
-#' 
 #' @export
-#' 
 qr2 <- function(X, Y, lambda) {
     .Call(`_HiQR_qr2`, X, Y, lambda)
 }
@@ -185,20 +158,20 @@ qr2 <- function(X, Y, lambda) {
 #' @description ADMM algorithm for high dimensional Quadratic regression with a \eqn{\ell_1} norm penalty:
 #' \deqn{\argmin_Y \frac{1}{2n}\sum_{i=1}^n (Y_i-X_i^\top \Omega X_i)^2+\lambda \|\Omega\|_1.} 
 #' @param \code{X}, a \eqn{n*p} input data matrix.
-#' @param \code{Y}, a \eqn{n} response vector.  
+#' @param \code{Y}, a \eqn{n} dimensional response vector.  
 #' @param \code{lambda}, user supplied tuning parameter.
-#' @param \code{err_abs}, \code{err_rel}   the precision used to stop the convergence of ADMM. 
+#' @param \code{err_abs}, the absolute tolerance precision used to stop the convergence of ADMM. 
+#' @param \code{err_rel}, the relative tolerance precision used to stop the convergence of ADMM. 
 #' @param \code{maxIter}, Maximum number of iterations. Default is 1000.
 #' @param \code{rho}, initial step parameter for ADMM.
+#' @param \code{rho_vary}, whether varying penalty parameter \eqn{\rho} for ADMM. Default is 0 (no varying).
 #' @return A list with components
 #' \item{Omega}{a list of sparse p*p matrices corresponding to lambda.}
 #' \item{lambda}{the used lambda for the solution path.}
 #' \item{niter}{the number of iterations for each element of lambda.}
-#' 
 #' @export
-#' 
-qr1 <- function(X, Y, lambda, err_abs = 10^(-4), err_rel = 10^(-3), maxIter = 200L, rho = 1) {
-    .Call(`_HiQR_qr1`, X, Y, lambda, err_abs, err_rel, maxIter, rho)
+qr1 <- function(X, Y, lambda, err_abs = 10^(-4), err_rel = 10^(-3), maxIter = 200L, rho = 1, rho_vary = 0L) {
+    .Call(`_HiQR_qr1`, X, Y, lambda, err_abs, err_rel, maxIter, rho, rho_vary)
 }
 
 #' @title Quadratic regression with \eqn{\ell_1} penalty and an additional penalty
@@ -210,19 +183,19 @@ qr1 <- function(X, Y, lambda, err_abs = 10^(-4), err_rel = 10^(-3), maxIter = 20
 #' @param \code{lambda2}, user supplied tuning parameters.
 #' @param \code{type} The additional penalty to use for the quadratic regression.
 #'  \eqn{2} is the \eqn{\ell_\infty} penalty; \eqn{3} is the \eqn{\ell_2} penalty (Group LASSO); \eqn{4} is the hybrid \eqn{\ell_1/\ell_\infty} penalty.
-#' @param \code{err_abs}, \code{err_rel},   the precision used to stop the convergence of ADMM. 
+#' @param \code{err_abs}, the absolute tolerance precision used to stop the convergence of ADMM. 
+#' @param \code{err_rel}, the relative tolerance precision used to stop the convergence of ADMM. 
 #' @param \code{maxIter}, maximum number of iterations. Default is 200.
 #' @param \code{rho}, initial step parameter for ADMM.
-#' 
-#' @return A list with components
+#' @param \code{rho_vary}, whether varying penalty parameter \eqn{\rho} for ADMM. Default is 0 (no varying).
+#' @return A list with components:
 #' \item{Omega}{a list of sparse \eqn{p \times p} matrices corresponding to \code{lambda1}[k] and \code{lambda2}[k].}
 #' \item{lambda1}{the used lambda1 for the solution path.}
 #' \item{lambda2}{the used lambda2 for the solution path.}
 #' \item{niter}{the number of iterations.}
 #' @export
-#' 
-qr3 <- function(X, Y, lambda1, lambda2, type = 2L, err_abs = 10^(-4), err_rel = 10^(-3), maxIter = 200L, rho = 5) {
-    .Call(`_HiQR_qr3`, X, Y, lambda1, lambda2, type, err_abs, err_rel, maxIter, rho)
+qr3 <- function(X, Y, lambda1, lambda2, type = 2L, err_abs = 10^(-4), err_rel = 10^(-3), maxIter = 200L, rho = 5, rho_vary = 0L) {
+    .Call(`_HiQR_qr3`, X, Y, lambda1, lambda2, type, err_abs, err_rel, maxIter, rho, rho_vary)
 }
 
 #' @title Quadratic regression with nuclear norm penalty 
@@ -231,18 +204,18 @@ qr3 <- function(X, Y, lambda1, lambda2, type = 2L, err_abs = 10^(-4), err_rel = 
 #' @param \code{X}, a \eqn{n*p} input data matrix.
 #' @param \code{Y}, a \eqn{n} response vector.  
 #' @param \code{lambda}, user supplied tuning parameter; 
-#' @param \code{err_abs}, \code{err_rel}   the precision used to stop the convergence of ADMM. 
+#' @param \code{err_abs}, the absolute tolerance precision used to stop the convergence of ADMM. 
+#' @param \code{err_rel}, the relative tolerance precision used to stop the convergence of ADMM. 
 #' @param \code{maxIter}, Maximum number of iterations. Default is 1000.
 #' @param \code{rho}, initial step parameter for ADMM.
+#' @param \code{rho_vary}, whether varying penalty parameter \eqn{\rho} for ADMM. Default is 0 (no varying).
 #' @return A list with components
 #' \item{Omega}{a list of sparse p*p matrices corresponding to lambda.}
 #' \item{lambda}{the used lambda for the solution path.}
 #' \item{niter}{the number of iterations for each element of lambda.}
-#' 
 #' @export
-#' 
-qr1_rank <- function(X, Y, lambda, err_abs = 10^(-4), err_rel = 10^(-3), maxIter = 200L, rho = 1) {
-    .Call(`_HiQR_qr1_rank`, X, Y, lambda, err_abs, err_rel, maxIter, rho)
+qr1_rank <- function(X, Y, lambda, err_abs = 10^(-4), err_rel = 10^(-3), maxIter = 200L, rho = 1, rho_vary = 0L) {
+    .Call(`_HiQR_qr1_rank`, X, Y, lambda, err_abs, err_rel, maxIter, rho, rho_vary)
 }
 
 #' @title Quadratic regression with \eqn{\ell_1} penalty and nuclear norm penalty (Sparse and Low rank)
@@ -252,18 +225,18 @@ qr1_rank <- function(X, Y, lambda, err_abs = 10^(-4), err_rel = 10^(-3), maxIter
 #' @param \code{Y}, a \eqn{n} dimensional response vector.  
 #' @param \code{lambda1}, user supplied tuning parameters.
 #' @param \code{lambda2}, user supplied tuning parameters.
-#' @param \code{err_abs}, \code{err_rel},   the precision used to stop the convergence of ADMM. 
+#' @param \code{err_abs}, the absolute tolerance precision used to stop the convergence of ADMM. 
+#' @param \code{err_rel}, the relative tolerance precision used to stop the convergence of ADMM. 
 #' @param \code{maxIter}, maximum number of iterations. Default is 200.
 #' @param \code{rho}, initial step parameter for ADMM.
-#' 
+#' @param \code{rho_vary}, whether varying penalty parameter \eqn{\rho} for ADMM. Default is 0 (no varying).
 #' @return A list with components
 #' \item{Omega}{a list of sparse \eqn{p \times p} matrices corresponding to lambda.}
 #' \item{lambda1}{the used lambda1 for the solution path.}
 #' \item{lambda2}{the used lambda2 for the solution path.}
 #' \item{niter}{the number of iterations for each element of (lambda1,lambda2).}
 #' @export
-#' 
-qr3_rank <- function(X, Y, lambda1, lambda2, err_abs = 10^(-4), err_rel = 10^(-3), maxIter = 200L, rho = 5) {
-    .Call(`_HiQR_qr3_rank`, X, Y, lambda1, lambda2, err_abs, err_rel, maxIter, rho)
+qr3_rank <- function(X, Y, lambda1, lambda2, err_abs = 10^(-4), err_rel = 10^(-3), maxIter = 200L, rho = 5, rho_vary = 0L) {
+    .Call(`_HiQR_qr3_rank`, X, Y, lambda1, lambda2, err_abs, err_rel, maxIter, rho, rho_vary)
 }
 

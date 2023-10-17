@@ -11,10 +11,10 @@ qr2(X, Y, lambda)
 
 \item{\code{Y}, }{a \eqn{n} dimensional response vector.}
 
-\item{\code{lambda}, }{user supplied tuning parameter;}
+\item{\code{lambda}, }{user supplied tuning parameters;}
 }
 \value{
-A list with components
+A list with components:
 \item{Omega}{a list of sparse \eqn{p \times p} matrices corresponding to lambda.}
 \item{lambda}{the used lambda.}
 }

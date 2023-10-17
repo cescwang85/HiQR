@@ -7,11 +7,11 @@
 inf_mat(X, lambda = 0, k = 1L)
 }
 \arguments{
-\item{\code{X}, }{a Matrix.}
+\item{\code{X}, }{a matrix.}
 
 \item{\code{lambda}, }{a scalar.}
 
-\item{\code{k}, }{Not penalized the first \code{k} columns. Default is 1.}
+\item{\code{k}, }{not penalized the first \code{k} columns. Default is 1.}
 }
 \value{
 a matrix.

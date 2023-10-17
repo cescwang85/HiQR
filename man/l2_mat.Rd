@@ -2,16 +2,16 @@
 % Please edit documentation in R/RcppExports.R
 \name{l2_mat}
 \alias{l2_mat}
-\title{Proximal projection of a \eqn{\ell_2} penalty for a matrix}
+\title{Proximal projection of a \eqn{\ell_2} penalty for a Matrix}
 \usage{
 l2_mat(X, lambda = 0, k = 1L)
 }
 \arguments{
-\item{\code{X}, }{a Matrix.}
+\item{\code{X}, }{a matrix.}
 
 \item{\code{lambda}, }{a scalar.}
 
-\item{\code{k}, }{Not penalized the first \code{k} columns. Default is 1.}
+\item{\code{k}, }{not penalized the first \code{k} columns. Default is 1.}
 }
 \value{
 A Matrix.

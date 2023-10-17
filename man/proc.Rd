@@ -15,8 +15,7 @@ proc(X, lambda = 0, type = 1L, k = 1L)
 \eqn{2} is the \eqn{\ell_\infty} penalty; \eqn{3} is the \eqn{\ell_2} penalty;
  \eqn{4} is the hybrid \eqn{\ell_1/\ell_\infty} penalty.}
 
-\item{\code{k}, }{Not penalized the first element (for \eqn{\ell_1} penalty) or the first \code{k} columns (for other penalties). Default is 1.
-Not work for the nuclear norm.}
+\item{\code{k}, }{not penalized the first element (for \eqn{\ell_1} penalty) or the first \code{k} columns (for other penalties). Default is 1.}
 }
 \value{
 a matrix.
@@ -24,5 +23,4 @@ a matrix.
 \description{
 Proximal projection solution of a Matrix where each column is the solution:
 \deqn{\argmin_y ||y-x||_2^2/2+\lambda \cdot p(y).}
-or proximal projection of nuclear norm.
 }

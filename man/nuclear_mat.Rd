@@ -4,7 +4,7 @@
 \alias{nuclear_mat}
 \title{Proximal projection of a nuclear norm penalty.}
 \usage{
-nuclear_mat(X, lambda)
+nuclear_mat(X, lambda = 0)
 }
 \arguments{
 \item{\code{X}, }{a matrix.}

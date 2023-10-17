@@ -17,7 +17,8 @@ hiqr(
   err_abs = 1e-04,
   err_rel = 0.001,
   maxIter = 200,
-  rho = 5
+  rho = 5,
+  rho_vary = 0
 )
 }
 \arguments{
@@ -42,9 +43,9 @@ Default is NULL and the program compute its own sequence based on \code{nlambda}
 
 \item{\code{nlambda}, }{the length of the tuning parameter sequence which is available when \code{lambda} is NULL. Default is 50.}
 
-\item{\code{lambda.min.ratio}, }{smallest value for lambda, as a fraction of lambda.max which is available when \code{lambda} is NULL. Default is 0.1.}
+\item{\code{lambda.min.ratio}, }{smallest value for lambda, as a fraction of lambda.max which is available when \code{lambda} is NULL. Default is 0.25.}
 
-\item{\code{nalpha}, }{the length of the second parameter to control the magnitude of penalties on individual covariaate versus interaction terms.
+\item{\code{nalpha}, }{the length of the second parameter to control the magnitude of penalties on individual covariates versus interaction terms.
 which is available when \code{lambda} is NULL. Default is 5.}
 
 \item{\code{alpha.min.ratio}, }{smallest value for \code{alpha}. Default is 0.1.}
@@ -54,13 +55,15 @@ which is available when \code{lambda} is NULL. Default is 5.}
 \item{\code{maxIter}, }{Maximum number of iterations. Default is 200.}
 
 \item{\code{rho}, }{step parameter for ADMM. Default is 5.}
+
+\item{\code{rho_vary}, }{whether varying penalty parameter \eqn{\rho} for ADMM. Default is 0 (no varying).}
 }
 \value{
 A list with components
 \item{Omega}{a list with length \code{nlambda}(for single penalty) or \code{nlambda}*\code{nalpha}(for two penalties) of sparse \eqn{(p+1) \times (p+1)} matrices. 
-For two penalties, the element of the list is corresponding to (\code{lambda1}[k],\code{lambda2}[k]}).
-\item{lambda1}{the used \code{lambda1} for the solution path.}
-\item{lambda2}{the used \code{lambda2} for the solution path.}
+For two penalties, the element of the list is corresponding to (\code{lambda1}[k],\code{lambda2}[k]).}
+\item{\code{lambda1}}{the used \code{lambda1} for the solution path.}
+\item{\code{lambda2}}{the used \code{lambda2} for the solution path.}
 \item{niter}{the number of iterations for each element which is a \code{nlambda1} vector(for single penalty) or a \code{nlambda1}*\code{nlambda2} vector (for two penalties).}
 }
 \description{
@@ -68,7 +71,7 @@ Main function for the High dimensional Quadratic Regression (HiQR)
 }
 \examples{
 rm(list = ls())
-library('PIE')
+library('HiQR')
 library('glmnet')
 set.seed(99)
 p=100
@@ -79,9 +82,11 @@ Omega[1,6]=2;Omega[6,10]=2;Omega=(Omega+t(Omega))/2;
 beta<-rep(0,p);beta[c(1,6,10)]=1;
 X=matrix(rnorm(n*p),nrow =n);
 Y=as.vector(diag(X\%*\%Omega\%*\%t(X))+X\%*\%beta+rnorm(n));
-yOme<-PIE(X,Y)
-hbeta<-as.vector(coef(cv.glmnet(X,Y,nfolds =5),s="lambda.min"))[-1];  
-rOme<-PIE(X,Y-X\%*\%hbeta)
-yOme[1:10,1:10]
-rOme[1:10,1:10]
+obj2<-hiqr(X,Y,type=1) ##LASSO
+obj2<-hiqr(X,Y,type=2) ## Ridge Regression 
+obj5<-hiqr(X,Y,type=5)## Reduced Rank Regression
+obj12<-hiqr(X,Y,type=12) ## $\ell_1+\ell_2$ norm
+obj13<-hiqr(X,Y,type=13) ## $\ell_1+\ell_\infty$ norm
+obj14<-hiqr(X,Y,type=14) ## $\ell_1+\ell_1/\ell_\infty$ norm
+obj15<-hiqr(X,Y,type=15) ## $\ell_1+\ell_*$ norm: 
 }

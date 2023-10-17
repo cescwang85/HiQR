@@ -12,7 +12,8 @@ qr3_rank(
   err_abs = 10^(-4),
   err_rel = 10^(-3),
   maxIter = 200L,
-  rho = 5
+  rho = 5,
+  rho_vary = 0L
 )
 }
 \arguments{
@@ -24,11 +25,15 @@ qr3_rank(
 
 \item{\code{lambda2}, }{user supplied tuning parameters.}
 
-\item{\code{err_abs}, }{\code{err_rel},   the precision used to stop the convergence of ADMM.}
+\item{\code{err_abs}, }{the absolute tolerance precision used to stop the convergence of ADMM.}
+
+\item{\code{err_rel}, }{the relative tolerance precision used to stop the convergence of ADMM.}
 
 \item{\code{maxIter}, }{maximum number of iterations. Default is 200.}
 
 \item{\code{rho}, }{initial step parameter for ADMM.}
+
+\item{\code{rho_vary}, }{whether varying penalty parameter \eqn{\rho} for ADMM. Default is 0 (no varying).}
 }
 \value{
 A list with components

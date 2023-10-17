@@ -148,7 +148,7 @@
     },
     {
         "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-        "file_last_write": 1682494601.0,
+        "file_last_write": 1697506414.0,
         "definitions": [
             {
                 "usr": "c:@F@soft_vec#$@N@arma@S@Col>#d#d#",
@@ -156,7 +156,7 @@
                 "parent_name": "",
                 "name": "soft_vec(arma::vec, double)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 14,
+                "line": 11,
                 "column": 11,
                 "hidden": false
             },
@@ -166,7 +166,7 @@
                 "parent_name": "",
                 "name": "soft(arma::mat, double, int)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 31,
+                "line": 25,
                 "column": 11,
                 "hidden": false
             },
@@ -176,7 +176,7 @@
                 "parent_name": "",
                 "name": "inf_vec(arma::vec, double)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 49,
+                "line": 39,
                 "column": 11,
                 "hidden": false
             },
@@ -186,7 +186,7 @@
                 "parent_name": "",
                 "name": "inf_mat(arma::mat, double, int)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 75,
+                "line": 63,
                 "column": 11,
                 "hidden": false
             },
@@ -196,7 +196,7 @@
                 "parent_name": "",
                 "name": "l2_vec(arma::vec, double)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 92,
+                "line": 78,
                 "column": 11,
                 "hidden": false
             },
@@ -206,7 +206,7 @@
                 "parent_name": "",
                 "name": "l2_mat(arma::mat, double, int)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 111,
+                "line": 95,
                 "column": 11,
                 "hidden": false
             },
@@ -216,7 +216,7 @@
                 "parent_name": "",
                 "name": "l1inf_vec(arma::vec, double)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 130,
+                "line": 112,
                 "column": 11,
                 "hidden": false
             },
@@ -226,7 +226,7 @@
                 "parent_name": "",
                 "name": "l1inf_mat(arma::mat, double, int)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 156,
+                "line": 136,
                 "column": 11,
                 "hidden": false
             },
@@ -236,7 +236,7 @@
                 "parent_name": "",
                 "name": "nuclear_mat(arma::mat, double)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 172,
+                "line": 150,
                 "column": 11,
                 "hidden": false
             },
@@ -246,7 +246,7 @@
                 "parent_name": "",
                 "name": "proc(arma::mat, double, int, int)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 206,
+                "line": 179,
                 "column": 11,
                 "hidden": false
             },
@@ -256,7 +256,7 @@
                 "parent_name": "",
                 "name": "gram(arma::mat, arma::vec)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 223,
+                "line": 195,
                 "column": 11,
                 "hidden": false
             },
@@ -266,7 +266,7 @@
                 "parent_name": "",
                 "name": "qrow(arma::mat, arma::mat)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 237,
+                "line": 208,
                 "column": 11,
                 "hidden": false
             },
@@ -276,47 +276,47 @@
                 "parent_name": "",
                 "name": "qr2(arma::mat, arma::vec, arma::vec)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 254,
+                "line": 223,
                 "column": 12,
                 "hidden": false
             },
             {
-                "usr": "c:@F@qr1#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S1_#d#d#I#d#",
+                "usr": "c:@F@qr1#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S1_#d#d#I#d#I#",
                 "kind": 6,
                 "parent_name": "",
-                "name": "qr1(arma::mat, arma::vec, arma::vec, double, double, int, double)",
+                "name": "qr1(arma::mat, arma::vec, arma::vec, double, double, int, double, int)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 295,
+                "line": 264,
                 "column": 12,
                 "hidden": false
             },
             {
-                "usr": "c:@F@qr3#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S1_#S1_#I#d#d#I#d#",
+                "usr": "c:@F@qr3#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S1_#S1_#I#d#d#I#d#I#",
                 "kind": 6,
                 "parent_name": "",
-                "name": "qr3(arma::mat, arma::vec, arma::vec, arma::vec, int, double, double, int, double)",
+                "name": "qr3(arma::mat, arma::vec, arma::vec, arma::vec, int, double, double, int, double, int)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 373,
+                "line": 343,
                 "column": 12,
                 "hidden": false
             },
             {
-                "usr": "c:@F@qr1_rank#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S1_#d#d#I#d#",
+                "usr": "c:@F@qr1_rank#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S1_#d#d#I#d#I#",
                 "kind": 6,
                 "parent_name": "",
-                "name": "qr1_rank(arma::mat, arma::vec, arma::vec, double, double, int, double)",
+                "name": "qr1_rank(arma::mat, arma::vec, arma::vec, double, double, int, double, int)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 468,
+                "line": 434,
                 "column": 12,
                 "hidden": false
             },
             {
-                "usr": "c:@F@qr3_rank#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S1_#S1_#d#d#I#d#",
+                "usr": "c:@F@qr3_rank#$@N@arma@S@Mat>#d#$@N@arma@S@Col>#d#S1_#S1_#d#d#I#d#I#",
                 "kind": 6,
                 "parent_name": "",
-                "name": "qr3_rank(arma::mat, arma::vec, arma::vec, arma::vec, double, double, int, double)",
+                "name": "qr3_rank(arma::mat, arma::vec, arma::vec, arma::vec, double, double, int, double, int)",
                 "file": "/Users/chengwang/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR/src/qr.cpp",
-                "line": 545,
+                "line": 512,
                 "column": 12,
                 "hidden": false
             }

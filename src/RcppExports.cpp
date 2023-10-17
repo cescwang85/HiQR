@@ -175,8 +175,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // qr1
-Rcpp::List qr1(arma::mat X, arma::vec Y, arma::vec lambda, double err_abs, double err_rel, int maxIter, double rho);
-RcppExport SEXP _HiQR_qr1(SEXP XSEXP, SEXP YSEXP, SEXP lambdaSEXP, SEXP err_absSEXP, SEXP err_relSEXP, SEXP maxIterSEXP, SEXP rhoSEXP) {
+Rcpp::List qr1(arma::mat X, arma::vec Y, arma::vec lambda, double err_abs, double err_rel, int maxIter, double rho, int rho_vary);
+RcppExport SEXP _HiQR_qr1(SEXP XSEXP, SEXP YSEXP, SEXP lambdaSEXP, SEXP err_absSEXP, SEXP err_relSEXP, SEXP maxIterSEXP, SEXP rhoSEXP, SEXP rho_varySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -187,13 +187,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type err_rel(err_relSEXP);
     Rcpp::traits::input_parameter< int >::type maxIter(maxIterSEXP);
     Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
-    rcpp_result_gen = Rcpp::wrap(qr1(X, Y, lambda, err_abs, err_rel, maxIter, rho));
+    Rcpp::traits::input_parameter< int >::type rho_vary(rho_varySEXP);
+    rcpp_result_gen = Rcpp::wrap(qr1(X, Y, lambda, err_abs, err_rel, maxIter, rho, rho_vary));
     return rcpp_result_gen;
 END_RCPP
 }
 // qr3
-Rcpp::List qr3(arma::mat X, arma::vec Y, arma::vec lambda1, arma::vec lambda2, int type, double err_abs, double err_rel, int maxIter, double rho);
-RcppExport SEXP _HiQR_qr3(SEXP XSEXP, SEXP YSEXP, SEXP lambda1SEXP, SEXP lambda2SEXP, SEXP typeSEXP, SEXP err_absSEXP, SEXP err_relSEXP, SEXP maxIterSEXP, SEXP rhoSEXP) {
+Rcpp::List qr3(arma::mat X, arma::vec Y, arma::vec lambda1, arma::vec lambda2, int type, double err_abs, double err_rel, int maxIter, double rho, int rho_vary);
+RcppExport SEXP _HiQR_qr3(SEXP XSEXP, SEXP YSEXP, SEXP lambda1SEXP, SEXP lambda2SEXP, SEXP typeSEXP, SEXP err_absSEXP, SEXP err_relSEXP, SEXP maxIterSEXP, SEXP rhoSEXP, SEXP rho_varySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -206,13 +207,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type err_rel(err_relSEXP);
     Rcpp::traits::input_parameter< int >::type maxIter(maxIterSEXP);
     Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
-    rcpp_result_gen = Rcpp::wrap(qr3(X, Y, lambda1, lambda2, type, err_abs, err_rel, maxIter, rho));
+    Rcpp::traits::input_parameter< int >::type rho_vary(rho_varySEXP);
+    rcpp_result_gen = Rcpp::wrap(qr3(X, Y, lambda1, lambda2, type, err_abs, err_rel, maxIter, rho, rho_vary));
     return rcpp_result_gen;
 END_RCPP
 }
 // qr1_rank
-Rcpp::List qr1_rank(arma::mat X, arma::vec Y, arma::vec lambda, double err_abs, double err_rel, int maxIter, double rho);
-RcppExport SEXP _HiQR_qr1_rank(SEXP XSEXP, SEXP YSEXP, SEXP lambdaSEXP, SEXP err_absSEXP, SEXP err_relSEXP, SEXP maxIterSEXP, SEXP rhoSEXP) {
+Rcpp::List qr1_rank(arma::mat X, arma::vec Y, arma::vec lambda, double err_abs, double err_rel, int maxIter, double rho, int rho_vary);
+RcppExport SEXP _HiQR_qr1_rank(SEXP XSEXP, SEXP YSEXP, SEXP lambdaSEXP, SEXP err_absSEXP, SEXP err_relSEXP, SEXP maxIterSEXP, SEXP rhoSEXP, SEXP rho_varySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -223,13 +225,14 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type err_rel(err_relSEXP);
     Rcpp::traits::input_parameter< int >::type maxIter(maxIterSEXP);
     Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
-    rcpp_result_gen = Rcpp::wrap(qr1_rank(X, Y, lambda, err_abs, err_rel, maxIter, rho));
+    Rcpp::traits::input_parameter< int >::type rho_vary(rho_varySEXP);
+    rcpp_result_gen = Rcpp::wrap(qr1_rank(X, Y, lambda, err_abs, err_rel, maxIter, rho, rho_vary));
     return rcpp_result_gen;
 END_RCPP
 }
 // qr3_rank
-Rcpp::List qr3_rank(arma::mat X, arma::vec Y, arma::vec lambda1, arma::vec lambda2, double err_abs, double err_rel, int maxIter, double rho);
-RcppExport SEXP _HiQR_qr3_rank(SEXP XSEXP, SEXP YSEXP, SEXP lambda1SEXP, SEXP lambda2SEXP, SEXP err_absSEXP, SEXP err_relSEXP, SEXP maxIterSEXP, SEXP rhoSEXP) {
+Rcpp::List qr3_rank(arma::mat X, arma::vec Y, arma::vec lambda1, arma::vec lambda2, double err_abs, double err_rel, int maxIter, double rho, int rho_vary);
+RcppExport SEXP _HiQR_qr3_rank(SEXP XSEXP, SEXP YSEXP, SEXP lambda1SEXP, SEXP lambda2SEXP, SEXP err_absSEXP, SEXP err_relSEXP, SEXP maxIterSEXP, SEXP rhoSEXP, SEXP rho_varySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -241,7 +244,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double >::type err_rel(err_relSEXP);
     Rcpp::traits::input_parameter< int >::type maxIter(maxIterSEXP);
     Rcpp::traits::input_parameter< double >::type rho(rhoSEXP);
-    rcpp_result_gen = Rcpp::wrap(qr3_rank(X, Y, lambda1, lambda2, err_abs, err_rel, maxIter, rho));
+    Rcpp::traits::input_parameter< int >::type rho_vary(rho_varySEXP);
+    rcpp_result_gen = Rcpp::wrap(qr3_rank(X, Y, lambda1, lambda2, err_abs, err_rel, maxIter, rho, rho_vary));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -260,10 +264,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_HiQR_gram", (DL_FUNC) &_HiQR_gram, 2},
     {"_HiQR_qrow", (DL_FUNC) &_HiQR_qrow, 2},
     {"_HiQR_qr2", (DL_FUNC) &_HiQR_qr2, 3},
-    {"_HiQR_qr1", (DL_FUNC) &_HiQR_qr1, 7},
-    {"_HiQR_qr3", (DL_FUNC) &_HiQR_qr3, 9},
-    {"_HiQR_qr1_rank", (DL_FUNC) &_HiQR_qr1_rank, 7},
-    {"_HiQR_qr3_rank", (DL_FUNC) &_HiQR_qr3_rank, 8},
+    {"_HiQR_qr1", (DL_FUNC) &_HiQR_qr1, 8},
+    {"_HiQR_qr3", (DL_FUNC) &_HiQR_qr3, 10},
+    {"_HiQR_qr1_rank", (DL_FUNC) &_HiQR_qr1_rank, 8},
+    {"_HiQR_qr3_rank", (DL_FUNC) &_HiQR_qr3_rank, 9},
     {NULL, NULL, 0}
 };
 

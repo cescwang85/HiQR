@@ -4,7 +4,7 @@
 \alias{soft_vec}
 \title{Element-wise soft-thresholding function for a vector}
 \usage{
-soft_vec(x, lambda)
+soft_vec(x, lambda = 0)
 }
 \arguments{
 \item{\code{x}, }{a vector.}
@@ -12,7 +12,7 @@ soft_vec(x, lambda)
 \item{\code{lambda}, }{a scalar.}
 }
 \value{
-a vector after threholding.
+a vector after thresholding.
 }
 \description{
 Soft-thresholding function for a vector which is the solution of

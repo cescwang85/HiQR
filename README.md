@@ -51,7 +51,7 @@ Y=rnorm(n)
 
 
 ## LASSO
-obj2<-hiqr(X,Y,type=1)
+obj1<-hiqr(X,Y,type=1)
 ## Ridege 
 obj2<-hiqr(X,Y,type=2)
 ## Ridege 

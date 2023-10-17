@@ -11,21 +11,26 @@ qr1(
   err_abs = 10^(-4),
   err_rel = 10^(-3),
   maxIter = 200L,
-  rho = 1
+  rho = 1,
+  rho_vary = 0L
 )
 }
 \arguments{
 \item{\code{X}, }{a \eqn{n*p} input data matrix.}
 
-\item{\code{Y}, }{a \eqn{n} response vector.}
+\item{\code{Y}, }{a \eqn{n} dimensional response vector.}
 
 \item{\code{lambda}, }{user supplied tuning parameter.}
 
-\item{\code{err_abs}, }{\code{err_rel}   the precision used to stop the convergence of ADMM.}
+\item{\code{err_abs}, }{the absolute tolerance precision used to stop the convergence of ADMM.}
+
+\item{\code{err_rel}, }{the relative tolerance precision used to stop the convergence of ADMM.}
 
 \item{\code{maxIter}, }{Maximum number of iterations. Default is 1000.}
 
 \item{\code{rho}, }{initial step parameter for ADMM.}
+
+\item{\code{rho_vary}, }{whether varying penalty parameter \eqn{\rho} for ADMM. Default is 0 (no varying).}
 }
 \value{
 A list with components

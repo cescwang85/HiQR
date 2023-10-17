@@ -4,17 +4,17 @@
 \alias{soft}
 \title{Element-wise soft-thresholding function for a matrix}
 \usage{
-soft(X, lambda, k = 1L)
+soft(X, lambda = 0, k = 1L)
 }
 \arguments{
 \item{\code{X}, }{a matrix.}
 
-\item{\code{lambda}, }{scalar.}
+\item{\code{lambda}, }{a scalar.}
 
-\item{\code{k}, }{Not penalized the first element. Default is \code{1}(TRUE).}
+\item{\code{k}, }{not penalized the first element. Default is \code{1}(TRUE).}
 }
 \value{
-a matrix after threholding.
+a matrix after thresholding.
 }
 \description{
 Soft-thresholding function for a matrix which is the solution of
