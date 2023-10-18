@@ -303,7 +303,7 @@ i=i+1;
 ee_dual=rho*norm(B-old_B,"fro"); /*dual residual*/
 ee_pri=norm(A-B,"fro"); /*primal residual*/
 double err_pri_new=p*err_abs+err_rel*std::max(norm(A,"fro"),norm(B,"fro"));
-double err_dual_new=p*err_abs+err_rel*norm(U,"fro");
+double err_dual_new=p*err_abs+err_rel*norm(U,"fro")*rho;
 if ((ee_dual<err_dual_new)&&(ee_pri<err_pri_new)) break;
 /*Varying Penalty Parameter*/
 if (rho_vary>0){
@@ -395,7 +395,7 @@ Rcpp::List qr3(arma::mat X,arma::vec Y,arma::vec lambda1,arma::vec lambda2,int t
       ee_dual=rho*norm(B-old_B,"fro"); /*dual residual*/
       ee_pri=norm(B1-B,"fro")+norm(B2-B,"fro")+norm(B3-B,"fro")+norm(B4-B,"fro"); /*primal residual*/
       double err_pri_new=p*err_abs+err_rel*norm(B,"fro");
-      double err_dual_new=p*err_abs+err_rel*norm(U1,"fro");
+      double err_dual_new=p*err_abs+err_rel*norm(U1,"fro")*rho;
       if ((ee_dual<err_dual_new)&&(ee_pri<err_pri_new)) break;
       /*Varying Penalty Parameter*/
       if (rho_vary>0) {
@@ -473,7 +473,7 @@ Rcpp::List qr1_rank(arma::mat X,arma::vec Y,arma::vec lambda,double err_abs=10^(
              ee_dual=rho*norm(B-old_B,"fro"); /*dual residual*/
              ee_pri=norm(A-B,"fro"); /*primal residual*/
              double err_pri_new=p*err_abs+err_rel*std::max(norm(A,"fro"),norm(B,"fro"));
-             double err_dual_new=p*err_abs+err_rel*norm(U,"fro");
+             double err_dual_new=p*err_abs+err_rel*norm(U,"fro")*rho;
              if ((ee_dual<err_dual_new)&&(ee_pri<err_pri_new)) break;
              /*Varying Penalty Parameter*/
              if (rho_vary>0) {
@@ -560,7 +560,7 @@ Rcpp::List qr3_rank(arma::mat X,arma::vec Y,arma::vec lambda1,arma::vec lambda2,
                     ee_dual=rho*norm(B-old_B,"fro"); /*dual residual*/
                     ee_pri=norm(B1-B,"fro")+norm(B2-B,"fro")+norm(B3-B,"fro"); /*primal residual*/
                     double err_pri_new=p*err_abs+err_rel*norm(B,"fro");
-                    double err_dual_new=p*err_abs+err_rel*norm(U1,"fro");
+                    double err_dual_new=p*err_abs+err_rel*norm(U1,"fro")*rho;
                     if ((ee_dual<err_dual_new)&&(ee_pri<err_pri_new)) break;
                     /*Varying Penalty Parameter*/
                     if (rho_vary>0) {
