@@ -16,8 +16,8 @@ hiqr(
   alpha.min.ratio = 0.1,
   err_abs = 1e-04,
   err_rel = 0.001,
-  maxIter = 200,
-  rho = 5,
+  maxIter = 500,
+  rho = 10,
   rho_vary = 0
 )
 }
@@ -52,9 +52,9 @@ which is available when \code{lambda} is NULL. Default is 5.}
 
 \item{\code{err_abs}, \code{err_rel}, }{the absolute and relative precision used to stop the convergence. Default are 1e-4 and 1e-3.}
 
-\item{\code{maxIter}, }{Maximum number of iterations. Default is 200.}
+\item{\code{maxIter}, }{Maximum number of iterations. Default is 500.}
 
-\item{\code{rho}, }{step parameter for ADMM. Default is 5.}
+\item{\code{rho}, }{step parameter for ADMM. Default is 10.}
 
 \item{\code{rho_vary}, }{whether varying penalty parameter \eqn{\rho} for ADMM. Default is 0 (no varying).}
 }

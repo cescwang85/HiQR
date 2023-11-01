@@ -19,8 +19,8 @@
 #' which is available when \code{lambda} is NULL. Default is 5.
 #' @param  \code{alpha.min.ratio}, smallest value for \code{alpha}. Default is 0.1.
 #' @param \code{err_abs},\code{err_rel}, the absolute and relative precision used to stop the convergence. Default are 1e-4 and 1e-3.
-#' @param \code{maxIter}, Maximum number of iterations. Default is 200.
-#' @param \code{rho}, step parameter for ADMM. Default is 5.
+#' @param \code{maxIter}, Maximum number of iterations. Default is 500.
+#' @param \code{rho}, step parameter for ADMM. Default is 10.
 #' @param \code{rho_vary}, whether varying penalty parameter \eqn{\rho} for ADMM. Default is 0 (no varying).
 #' @return A list with components
 #' \item{Omega}{a list with length \code{nlambda}(for single penalty) or \code{nlambda}*\code{nalpha}(for two penalties) of sparse \eqn{(p+1) \times (p+1)} matrices. 
@@ -48,7 +48,7 @@
 #'obj13<-hiqr(X,Y,type=13) ## $\ell_1+\ell_\infty$ norm
 #'obj14<-hiqr(X,Y,type=14) ## $\ell_1+\ell_1/\ell_\infty$ norm
 #'obj15<-hiqr(X,Y,type=15) ## $\ell_1+\ell_*$ norm
-hiqr<-function(X,Y,type=1,lambda=NULL,lambda2=NULL,nlambda=50,lambda.min.ratio=0.25,nalpha=5,alpha.min.ratio=0.1,err_abs=1e-4,err_rel=1e-3,maxIter=200,rho=5,rho_vary=0)
+hiqr<-function(X,Y,type=1,lambda=NULL,lambda2=NULL,nlambda=50,lambda.min.ratio=0.25,nalpha=5,alpha.min.ratio=0.1,err_abs=1e-4,err_rel=1e-3,maxIter=500,rho=10,rho_vary=0)
 {
   X<-cbind(1,as.matrix(X));
   Y<-as.vector(Y);

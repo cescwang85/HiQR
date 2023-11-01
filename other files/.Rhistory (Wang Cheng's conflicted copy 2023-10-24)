@@ -1,0 +1,512 @@
+tic('L2')
+fit1<- FAMILY(X0, X0, Y, lambdas , alphas, norm ='l2' )
+toc()
+tic('l_inf')
+fit2<- FAMILY(X0, X0, Y, lambdas , alphas, norm ='l_inf',verbose =FALSE)
+toc()
+#Low alpha, higher penalty on groups
+plot(fit1$Estimate[[ 1 ]][[ 25 ]])
+#all-pairs LASSO
+tic('HiQR-1')
+obj0=hiqr(X0,Y,type=1)
+toc()
+##LASSO+l_infty penalty
+tic('HiQR-12')
+obj1=hiqr(X,Y,nlambda1 =25,nlambda2 =25, type =12)
+toc()
+##LASSO+group LASSO
+tic('HiQR-13')
+obj2=hiqr(X,Y,nlambda1 =25,nlambda2 =25,type =13)
+toc()
+##LASSO+hybrid \eqn{\ell_1/\ell_\infty} penalty
+tic('HiQR-14')
+obj3=hiqr(X,Y,nlambda1 =25,nlambda2 =25,type =14)
+toc()
+##LASSO+nuclear norm penalty
+tic('HiQR-15')
+obj3=hiqr(X,Y,nlambda1 =25,nlambda2 =25,type =15)
+toc()
+#obj1$Omega[[420]][1:10,1:10]
+#Omega[1:10,1:10]
+##check the HiQR package with L1 penalty
+rm(list=ls())
+library(HiQR)
+set.seed(99)
+library('tictoc')
+library('glmnet')
+library('MASS')
+library('Matrix')
+library('FAMILY')
+library('PIE')
+p=200
+n=500;
+Sigma=toeplitz(0.5^(0:(p-1)))
+Omega3<-matrix(0,nrow=p+1,ncol=p+1)
+Omega3[2,6]=3;Omega3[6,6]=-2.5;Omega3[6,11]=4
+Omega3=(Omega3+t(Omega3))/2;
+Omega2=Omega3;
+Omega2[1,6]=-1;Omega2[6,1]=-1;
+Omega1=Omega2;
+Omega1[1,2]=1;Omega1[2,1]=1
+Omega1[1,11]=1;Omega1[11,1]=1
+Omega3[c(1,2,6,11),c(1,2,6,11)] ##check matrix
+X0<-mvrnorm(n,rep(0,p),Sigma)
+X<-cbind(1,X0)
+Y1<-diag(X%*%Omega1%*%t(X))+rnorm(n);
+Y2<-diag(X%*%Omega2%*%t(X))+rnorm(n);
+Y3<-diag(X%*%Omega3%*%t(X))+rnorm(n);
+Y=Y1
+############################## FIT SOME MODELS ########################################
+#Define alphas and lambdas
+#Define 3 different alpha values
+#Low alpha values penalize groups more
+#High alpha values penalize individual Interactions more
+alphas<- seq(0.1,0.9,length =9)
+lambdas<- seq(0.1,1,length = 50)
+#high Strong heredity with l2 norm
+tic('L2')
+fit1<- FAMILY(X0, X0, Y, lambdas , alphas, norm ='l2' )
+toc()
+tic('l_inf')
+fit2<- FAMILY(X0, X0, Y, lambdas , alphas, norm ='l_inf',verbose =FALSE)
+toc()
+#Low alpha, higher penalty on groups
+plot(fit1$Estimate[[ 1 ]][[ 25 ]])
+#all-pairs LASSO
+tic('HiQR-1')
+obj0=hiqr(X0,Y,type=1)
+toc()
+##LASSO+l_infty penalty
+tic('HiQR-12')
+obj1=hiqr(X,Y,nlambda1 =25,nlambda2 =25, type =12)
+toc()
+##LASSO+group LASSO
+tic('HiQR-13')
+obj2=hiqr(X,Y,nlambda1 =25,nlambda2 =25,type =13)
+toc()
+##LASSO+hybrid \eqn{\ell_1/\ell_\infty} penalty
+tic('HiQR-14')
+obj3=hiqr(X,Y,nlambda1 =25,nlambda2 =25,type =14)
+toc()
+##LASSO+nuclear norm penalty
+tic('HiQR-15')
+obj3=hiqr(X,Y,nlambda1 =25,nlambda2 =25,type =15)
+toc()
+#obj1$Omega[[420]][1:10,1:10]
+#Omega[1:10,1:10]
+sessionInfo()
+library(HiQR)
+remove.packages("HiQR")
+install.packages("~/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR_1.1.tar.gz", repos = NULL, type = "source")
+library('ncvreg')
+##check the HiQR package with L1 penalty
+rm(list=ls())
+library(HiQR)
+set.seed(99)
+library('tictoc')
+library('glmnet')
+library('Matrix')
+library('ncvreg')
+n=500
+p=100
+## Generate data
+X0<-matrix(rnorm(n*(p-1)),nrow=n)
+X<-cbind(1,X0)
+Omega<-matrix(0,nrow=p,ncol=p)
+Omega[1:3,1:3]=rnorm(9)
+Omega=(Omega+t(Omega))/2
+Y<-diag(X%*%Omega%*%t(X))+rnorm(n)
+##Conducting all pairs LASSO
+tic('lasso-glmnet')
+Xfull<-t(apply(X, 1, vec2inter));
+install.packages("~/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR_1.1.tar.gz", repos = NULL, type = "source")
+install.packages("~/Library/CloudStorage/Dropbox/Share/HQR_ADMM/HiQR_1.1.tar.gz", repos = NULL, type = "source")
+##check the HiQR package with L1 penalty
+rm(list=ls())
+library(HiQR)
+set.seed(99)
+library('tictoc')
+library('glmnet')
+library('Matrix')
+library('ncvreg')
+n=500
+p=120
+## Generate data
+X0<-matrix(rnorm(n*(p-1)),nrow=n)
+X<-cbind(1,X0)
+Omega<-matrix(0,nrow=p,ncol=p)
+Omega[1:3,1:3]=rnorm(9)
+Omega=(Omega+t(Omega))/2
+Y<-diag(X%*%Omega%*%t(X))+rnorm(n)
+##Conducting all pairs LASSO
+tic('lasso-glmnet')
+Xfull<-t(apply(X, 1, vec2inter));
+obj<-glmnet(Xfull[,-1],Y,standardize =FALSE,nlambda=50,lambda.min.ratio =0.05);
+toc()
+lambda=obj$lambda
+tic('lasso-ncvreg')
+obj1<-ncvreg(Xfull[,-1],Y,penalty ='lasso',family='gaussian')
+toc()
+A3=matrix(obj1$beta[,1],nrow =p)
+A3=(A3+t(A3))/2
+##all-pairs LASSO
+tic('qr')
+obj_new=hiqr(X0,Y,type=1,lambda=lambda)
+toc()
+t(obj_new$niter) ##check the number of iterations
+obj_new$rho
+##all-pairs LASSO
+tic('qr')
+obj_new=hiqr(X0,Y,type=1,lambda=lambda,rho=2)
+toc()
+sum(obj_new$niter) ##check the number of iterations
+##all-pairs LASSO
+tic('qr')
+obj_new=hiqr(X0,Y,type=1,lambda=lambda,rho=1)
+toc()
+sum(obj_new$niter) ##check the number of iterations
+##all-pairs LASSO
+tic('qr')
+obj_new=hiqr(X0,Y,type=1,lambda=lambda,rho=5)
+toc()
+sum(obj_new$niter) ##check the number of iterations
+##all-pairs LASSO
+tic('qr')
+obj_new=hiqr(X0,Y,type=1,lambda=lambda,rho=10)
+toc()
+sum(obj_new$niter) ##check the number of iterations
+remove.packages("HiQR")
+rm(list=ls())
+set.seed(123)
+n=100
+p=200
+X1<-matrix(rnorm(n*p),nrow =n)
+boxplot(X1)
+rm(list=ls())
+set.seed(123)
+n=100
+p=20
+X1<-matrix(rnorm(n*p),nrow =n)
+boxplot(X1)
+rm(list=ls())
+set.seed(123)
+n=100
+p=10
+X<-matrix(rnorm(n*p),nrow=n)
+S=t(X)%*%X/n;
+S%*%t(S)
+rm(list=ls())
+set.seed(123)
+n=100
+p=3
+X<-matrix(rnorm(n*p),nrow=n)
+S=t(X)%*%X/n;
+S%*%t(S)
+rm(list=ls())
+set.seed(123)
+n=100
+p=3
+X<-matrix(rnorm(n*p),nrow=n)
+S=t(X)%*%X/n;
+S%*%t(S)
+rm(list=ls())
+set.seed(123)
+n=100
+p=3
+X<-matrix(rnorm(n*p),nrow=n)
+S=t(X)%*%X/n;
+S%*%t(S)
+rm(list=ls())
+n=100
+p=3
+X<-matrix(rnorm(n*p),nrow=n)
+S=t(X)%*%X/n;
+S%*%t(S)
+rm(list=ls())
+n=100
+p=3
+X<-matrix(rnorm(n*p),nrow=n)
+S=t(X)%*%X/n;
+S%*%t(S)
+rm(list=ls())
+n=100
+p=3
+X<-matrix(rnorm(n*p),nrow=n)
+S=t(X)%*%X/n;
+S%*%t(S)
+rm(list=ls())
+n=100
+p=3
+X<-matrix(rnorm(n*p),nrow=n)
+S=t(X)%*%X/n;
+S%*%t(S)
+plot(rnorm(100))
+1401-560
+rm(list=ls())
+A<-diag(5);
+A[1,2:5]=c(0.123,0.42,0.088,0.245)
+A[2,3:5]=c(0.466,0.676,0.68)
+A[3,4:5]=c(0.44,0.531)
+A[4,5]=0.633
+A=A+t(A)-diag(5)
+A
+rm(list=ls())
+A<-diag(5);
+A[1,2:5]=c(0.123,0.42,0.088,0.245)
+A[2,3:5]=c(0.466,0.676,0.68)
+A[3,4:5]=c(0.44,0.531)
+A[4,5]=0.633
+A=A+t(A)-diag(5)
+A
+solve(A)
+rm(list=ls())
+A<-diag(5);
+A[1,2:5]=c(0.123,0.42,0.088,0.245)
+A[2,3:5]=c(0.466,0.676,0.68)
+A[3,4:5]=c(0.44,0.531)
+A[4,5]=0.633
+A=A+t(A)-diag(5)
+A
+cov2cor(solve(A))
+rm(list=ls())
+A<-diag(5);
+A[1,]=c(5.24,-2.44,-2.74,0.01,-0.14)
+A[2,2:5]=c(10.43,-4.71,-0.79,-0.17)
+A[3,3:5]=c(26.95,-7.05,-4.70)
+A[4,4:5]=c(9.88,-2.02)
+A[5,5]=6.45
+A=A+t(A)-diag(A)
+A
+cov2cor(solve(A))
+rm(list=ls())
+A<-diag(5);
+A[1,]=c(5.24,-2.44,-2.74,0.01,-0.14)
+A[2,2:5]=c(10.43,-4.71,-0.79,-0.17)
+A[3,3:5]=c(26.95,-7.05,-4.70)
+A[4,4:5]=c(9.88,-2.02)
+A[5,5]=6.45
+A=A+t(A)-diag(diag(A))
+A
+cov2cor(solve(A))
+rm(list=ls())
+A<-diag(5);
+A[1,]=c(5.24,-2.44,-2.74,0.01,-0.14)
+A[2,2:5]=c(10.43,-4.71,-0.79,-0.17)
+A[3,3:5]=c(26.95,-7.05,-4.70)
+A[4,4:5]=c(9.88,-2.02)
+A[5,5]=6.45
+A=A+t(A)-diag(diag(A))
+cov2cor(A)
+cov2cor(solve(A))
+rm(list=ls())
+A<-diag(5);
+A[1,]=c(5.24,-2.44,-2.74,0.01,-0.14)
+A[2,2:5]=c(10.43,-4.71,-0.79,-0.17)
+A[3,3:5]=c(26.95,-7.05,-4.70)
+A[4,4:5]=c(9.88,-2.02)
+A[5,5]=6.45
+A=A+t(A)-diag(diag(A))
+rownames(A)=c('Mechanics','Vectors','Algebra','Analysis','Statistics')
+colnames(A)<-c('Mechanics','Vectors','Algebra','Analysis','Statistics')
+cov2cor(A)
+cov2cor(solve(A))
+print(cov2cor(A),digits =3)
+print(cov2cor(solve(A)),digits =3)
+rm(list=ls())
+A<-diag(5);
+A[1,]=c(5.24,-2.44,-2.74,0.01,-0.14)
+A[2,2:5]=c(10.43,-4.71,-0.79,-0.17)
+A[3,3:5]=c(26.95,-7.05,-4.70)
+A[4,4:5]=c(9.88,-2.02)
+A[5,5]=6.45
+A=A+t(A)-diag(diag(A))
+rownames(A)=c('Mechanics','Vectors','Algebra','Analysis','Statistics')
+colnames(A)<-c('Mechanics','Vectors','Algebra','Analysis','Statistics')
+print(cov2cor(solve(A)),digits =3)
+print(cov2cor(A),digits =3)
+2^seq(-12, 12, by=0.5)
+install.packages(c("askpass", "bslib", "credentials", "curl", "fontawesome", "foreign", "glmnet", "htmltools", "httr", "knitr", "Matrix", "promises", "RcppArmadillo", "rmarkdown", "shiny", "survival"))
+uinque()
+unique()
+?unique
+##check the HiQR package with L1 penalty
+rm(list=ls())
+library(HiQR)
+set.seed(99)
+library('tictoc')
+library('glmnet')
+library('MASS')
+library('Matrix')
+library('FAMILY')
+install.packages("~/Library/CloudStorage/Dropbox/Share/HQR_ADMM/FAMILY_0.1.19.tar.gz", repos = NULL, type = "source")
+A=matrix(1:9,ncol=3)
+A
+A[-1,-1]
+install.packages("~/Library/CloudStorage/Dropbox/Share/HQR_ADMM/FAMILY_0.1.19.tar.gz", repos = NULL, type = "source")
+##time performance of HiQR for LASSO problem
+rm(list=ls())
+library(HiQR)
+setwd('~/Dropbox/Share/HQR_ADMM/sim')
+set.seed(99)
+library('glmnet')
+library('Matrix')
+library('MASS')
+library("lattice")
+library('ncvreg')
+ttime<-function(obj)
+{t1<-proc.time();
+obj
+t2<-as.vector(proc.time()-t1);
+return(sum(t2[1:2]))}
+n=500
+## Generate data
+p=400
+## Parameters
+Sigma=toeplitz(0.5^(0:(p-1)))
+Omega<-matrix(0,nrow=p+1,ncol=p+1)
+Omega[2,6]=3;Omega[6,6]=-2.5;Omega[6,11]=4
+Omega[1,2]=1;Omega[2,1]=1
+Omega[1,11]=1;Omega[11,1]=1
+X0<-mvrnorm(n,rep(0,p),Sigma)
+X<-cbind(1,X0)
+Y=as.vector(diag(X%*%Omega%*%t(X))+rnorm(n))
+runtime<-rep(0,3);
+## glmnet
+if (p<1200){
+runtime[1]=ttime({Xfull<-t(apply(X, 1, vec2inter));
+obj<-glmnet(Xfull[,-1],Y,standardize =FALSE,nlambda=50,lambda.min.ratio =sqrt(log(p)/n));})
+lambda=obj$lambda
+## ncvreg
+runtime[2]=ttime({Xfull<-t(apply(X, 1, vec2inter));
+obj1<-ncvreg(Xfull[,-1],Y,penalty ='lasso',lambda=lambda,family='gaussian',returnX =FALSE)})}
+## HiQR
+runtime[3]=ttime({obj5=hiqr(X0,Y,type=1,nlambda=50,err_abs =min(1e-4,0.1/p),err_rel =min(1e-4,0.1/p),rho=sqrt(p),maxIter =500,lambda.min.ratio =sqrt(log(p)/n))})
+print(c(p,runtime,mean(obj5$niter)))
+## HiQR
+runtime[3]=ttime({obj5=hiqr(X0,Y,type=1,nlambda=50,err_abs =min(1e-4,0.1/p),err_rel =min(1e-4,0.1/p),rho=10,maxIter =500,lambda.min.ratio =sqrt(log(p)/n))})
+print(c(p,runtime,mean(obj5$niter)))
+##time performance of HiQR for LASSO problem
+rm(list=ls())
+library(HiQR)
+setwd('~/Dropbox/Share/HQR_ADMM/sim')
+set.seed(99)
+library('glmnet')
+library('Matrix')
+library('MASS')
+library("lattice")
+library('ncvreg')
+ttime<-function(obj)
+{t1<-proc.time();
+obj
+t2<-as.vector(proc.time()-t1);
+return(sum(t2[1:2]))}
+n=500
+## Generate data
+ff<-function(p){
+## Parameters
+Sigma=toeplitz(0.5^(0:(p-1)))
+Omega<-matrix(0,nrow=p+1,ncol=p+1)
+Omega[2,6]=3;Omega[6,6]=-2.5;Omega[6,11]=4
+Omega[1,2]=1;Omega[2,1]=1
+Omega[1,11]=1;Omega[11,1]=1
+X0<-mvrnorm(n,rep(0,p),Sigma)
+X<-cbind(1,X0)
+Y=as.vector(diag(X%*%Omega%*%t(X))+rnorm(n))
+runtime<-rep(0,3);
+## glmnet
+if (p<1200){
+runtime[1]=ttime({Xfull<-t(apply(X, 1, vec2inter));
+obj<-glmnet(Xfull[,-1],Y,standardize =FALSE,nlambda=50,lambda.min.ratio =sqrt(log(p)/n));})
+lambda=obj$lambda
+## ncvreg
+runtime[2]=ttime({Xfull<-t(apply(X, 1, vec2inter));
+obj1<-ncvreg(Xfull[,-1],Y,penalty ='lasso',lambda=lambda,family='gaussian',returnX =FALSE)})}
+## HiQR
+runtime[3]=ttime({obj5=hiqr(X0,Y,type=1,nlambda=50,err_abs =min(1e-4,0.1/p),err_rel =min(1e-4,0.1/p),rho=sqrt(p),maxIter =500,lambda.min.ratio =sqrt(log(p)/n))})
+print(c(p,runtime,mean(obj5$niter)))
+return(runtime)
+}
+pp<-c(200,400,800,1200,1600,2000,2400)
+Re<-sapply(rep(pp,each=10),ff)
+Re
+saveRDS(Re,file='time-tab2.rds')
+rm(list=ls())
+library('stargazer')
+setwd('~/Dropbox/Share/HQR_ADMM/sim')
+Re<-readRDS('time-tab2.rds')
+pp<-c(200,400,800,1200,1600,2000,2400)
+dig=3
+table<-function(obj){
+m<-format(round(apply(obj,1,mean,na.rm=TRUE),dig),nsmall =dig)
+s<-format(round(apply(obj,1,sd,na.rm=TRUE),dig),nsmall =dig)
+l<-rep('(',length(m));
+r<-rep(')',length(m));
+R1=paste(m,l,s,r,sep='')
+return(R1)
+}
+AA<-matrix(0,nrow=3,ncol=length(pp))
+for ( k in 1:length(pp))
+{AA[,k]=table(Re[,(1:10)+(k-1)*10])}
+colnames(AA)=c('p=200','p=400','p=800','p=1200','p=1600','p=2000','p=2400');
+rownames(AA)=c('glmnet','ncvreg','HiQR')
+stargazer(AA)
+rm(list=ls())
+library('stargazer')
+setwd('~/Dropbox/Share/HQR_ADMM/sim')
+Re<-readRDS('time-tab2.rds')
+pp<-c(200,400,800,1200,1600,2000,2400)
+dig=3
+table<-function(obj){
+m<-format(round(apply(obj,1,mean,na.rm=TRUE),dig),nsmall =dig)
+s<-format(round(apply(obj,1,sd,na.rm=TRUE),dig),nsmall =dig)
+l<-rep('(',length(m));
+r<-rep(')',length(m));
+R1=paste(m,l,s,r,sep='')
+return(R1)
+}
+AA<-matrix(0,nrow=3,ncol=length(pp))
+for ( k in 1:length(pp))
+{AA[,k]=table(Re[,(1:10)+(k-1)*10])}
+colnames(AA)=c('p=200','p=400','p=800','p=1200','p=1600','p=2000','p=2400');
+rownames(AA)=c('glmnet','ncvreg','HiQR')
+stargazer(AA)
+##探索变系数rho对结果的影响
+rm(list=ls())
+set.seed(99)
+setwd('~/Dropbox/Share/HQR_ADMM/sim')
+library(HiQR)
+?hiqr
+install.packages('osqp')
+library('osqp')
+##time performance of HiQR for LASSO problem
+rm(list=ls())
+library(HiQR)
+setwd('~/Dropbox/Share/HQR_ADMM/sim')
+set.seed(99)
+library('glmnet')
+library('Matrix')
+library('MASS')
+library("lattice")
+library('ncvreg')
+library('osqp')
+0., 0.), 2, 2, sparse = TRUE)
+##time performance of HiQR for LASSO problem
+rm(list=ls())
+library(HiQR)
+setwd('~/Dropbox/Share/HQR_ADMM/sim')
+set.seed(99)
+library('glmnet')
+library('Matrix')
+library('MASS')
+library("lattice")
+library('ncvreg')
+library('osqp')
+P <- Matrix(c(11., 0.,0., 0.), 2, 2, sparse = TRUE)
+q <- c(3., 4.)
+A <- Matrix(c(-1., 0., -1., 2., 3.,0., -1., -3., 5., 4.), 5, 2, sparse = TRUE)
+u <- c(0., 0., -15., 100., 80)
+l <- rep_len(-Inf, 5)
+settings <- osqpSettings(verbose = TRUE)
+# Solve with OSQP
+res <- solve_osqp(P, q, A, l, u, settings)
+res$x
