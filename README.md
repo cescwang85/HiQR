@@ -17,7 +17,7 @@ $f(B)=\lambda_1 \|B\|_1+\lambda_2 \|B\|_*$.
 
 
 # References 
-Cheng Wang, Haozhe Chen and Binyan Jiang, [https://doi.org/10.1016/j.csda.2023.107904 HiQR: An efficient algorithm for high-dimensional quadratic regression with penalties], /Computational Statistics & Data Analysis/, 192, 107904, 2024. ([https://arxiv.org/abs/2306.00469 arXiv:2306.00469])
+Cheng Wang, Haozhe Chen and Binyan Jiang, [HiQR: An efficient algorithm for high-dimensional quadratic regression with penalties](https://doi.org/10.1016/j.csda.2023.107904), *Computational Statistics & Data Analysis*, 192, 107904, 2024. ([arXiv:2306.00469](https://arxiv.org/abs/2306.00469))
 
 ## Prerequisites
 What things you need to install the software and how to install them.  The key functions of the package is writing in C++ supported by the great Rcpp package. So, make sure your OS can complies C++ code. For example,  you should install Rtools under Windows and Xcode under MacOS.  After that, the following R packages are also necessary.
